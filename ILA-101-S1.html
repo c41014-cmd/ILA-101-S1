@@ -1,0 +1,2149 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ILA-101 Section A.1 · 壽險產品中文講義</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --bg: #12131a;
+  --surface: #1c1e28;
+  --surface2: #24263200;
+  --surface3: #252730;
+  --text: #e6e8f0;
+  --text-muted: #7a7e96;
+  --accent: #79b4f5;
+  --accent2: #f5be6a;
+  --accent3: #6ef5a8;
+  --accent4: #f56ea8;
+  --accent5: #b06ef5;
+  --border: #2a2d3e;
+  --sidebar-w: 290px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.9}
+
+/* ── toggle ── */
+#toggle-btn{position:fixed;top:14px;left:14px;z-index:300;width:38px;height:38px;background:#1e2030;border:1px solid #2e3248;border-radius:9px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transition:left .28s ease}
+#toggle-btn span{display:block;width:18px;height:2px;background:var(--accent2);border-radius:2px}
+body.sb-open #toggle-btn{left:calc(var(--sidebar-w) + 14px)}
+
+/* ── sidebar ── */
+#sidebar{width:var(--sidebar-w);background:#0c0d14;position:fixed;top:0;left:0;bottom:0;overflow-y:auto;z-index:200;transform:translateX(-100%);transition:transform .28s ease;border-right:1px solid var(--border)}
+body.sb-open #sidebar{transform:translateX(0)}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:190}
+body.sb-open #overlay{display:block}
+
+#sb-header{padding:22px 18px 14px;border-bottom:1px solid var(--border);margin-top:8px}
+#sb-header h1{font-size:13.5px;font-weight:700;color:var(--accent2);line-height:1.5}
+#sb-header p{font-size:11px;color:#444;margin-top:3px}
+
+#progress-wrap{padding:12px 18px 4px}
+#progress-label{font-size:11px;color:#555;margin-bottom:5px}
+#progress-bar{height:3px;background:#1a1c26;border-radius:2px;overflow:hidden}
+#progress-fill{height:100%;background:var(--accent2);border-radius:2px;transition:width .4s}
+
+.sec-label{padding:13px 18px 5px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3a3d52;border-top:1px solid #181924;margin-top:2px}
+#ch-list{list-style:none;padding:6px 0 60px}
+#ch-list>li{border-bottom:1px solid #181924}
+.ch-link{display:flex;align-items:center;gap:10px;padding:10px 18px;cursor:pointer;color:#5a5e78;transition:background .15s;font-size:12.5px;text-decoration:none}
+.ch-link:hover{background:#12141f;color:#888}
+.ch-link.active{background:#181b2e;color:var(--accent)}
+.ch-link.done{color:#3d6650}
+.ch-link .ck{width:16px;height:16px;border:1.5px solid #2e3040;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px}
+.ch-link.done .ck{background:#1e3a2a;border-color:#2e5a3a;color:#5aaa7a}
+.ch-link .lbl{line-height:1.4}
+
+/* ── main ── */
+#main{max-width:720px;margin:0 auto;padding:64px 26px 110px}
+.ch-block{display:none;margin-bottom:80px}
+.ch-block.active{display:block}
+
+.ch-meta{font-size:11px;color:#444;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.ch-title{font-size:23px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:5px}
+.ch-subtitle{font-size:13px;color:#555;margin-bottom:16px}
+.done-btn{font-family:'Noto Sans TC',sans-serif;font-size:12.5px;padding:6px 14px;background:transparent;border:1px solid #2e3040;border-radius:6px;color:#555;cursor:pointer;transition:all .2s}
+.done-btn:hover{border-color:#2e5a3a;color:#4a8a5a}
+.done-btn.done{background:#182a20;border-color:#2e5a3a;color:#5aaa7a}
+hr.rule{border:none;border-top:1px solid var(--border);margin:20px 0 28px}
+
+/* ── notes ── */
+.notes h2{font-size:17px;font-weight:700;color:var(--text);margin:38px 0 13px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.notes h3{font-size:14.5px;font-weight:700;color:var(--accent2);margin:22px 0 8px}
+.notes p{font-size:14.5px;color:#b0b4cc;margin-bottom:10px;line-height:1.85}
+.notes ul{list-style:none;padding:0;margin:6px 0 14px}
+.notes ul li{font-size:14.5px;color:#a8accc;padding:4px 0 4px 20px;position:relative;line-height:1.85}
+.notes ul li::before{content:'·';position:absolute;left:4px;color:#3a3e56;font-size:18px;line-height:1.4}
+.notes ul ul{margin:3px 0 3px 14px}
+.notes ul ul li::before{content:'–';font-size:13px;color:#2e3248;line-height:1.6}
+.notes ol{padding:0;list-style:none;margin:6px 0 14px;counter-reset:item}
+.notes ol li{font-size:14.5px;color:#a8accc;padding:4px 0 4px 28px;position:relative;line-height:1.85;counter-increment:item}
+.notes ol li::before{content:counter(item)'.';position:absolute;left:4px;color:var(--accent2);font-weight:700;font-size:12.5px;font-family:'JetBrains Mono',monospace}
+.notes ol li ul li{counter-increment:none;padding-left:16px}
+.notes ol li ul li::before{content:'·';color:#3a3e56;font-size:16px;left:2px;font-weight:normal;font-family:inherit}
+
+/* ── inline styles ── */
+.en{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:12.5px;background:rgba(121,180,245,.08);padding:1px 5px;border-radius:3px}
+.kw{color:var(--text);font-weight:700}
+.tag-y{color:#5aaa7a;font-weight:700}
+.tag-n{color:#a05a5a}
+
+/* ── exam box ── */
+.exam-box{background:var(--surface);border-radius:10px;padding:18px 20px;margin-bottom:32px;border-left:3px solid var(--accent2)}
+.exam-box .etitle{font-size:14.5px;font-weight:700;color:var(--accent2);margin-bottom:12px}
+.exam-box ol{counter-reset:none}
+.exam-box ol li{font-size:13.5px;padding:5px 0 5px 28px;border-bottom:1px solid var(--border);color:#a8accc}
+.exam-box ol li:last-child{border-bottom:none}
+.exam-box ol li::before{color:var(--accent2)}
+
+/* ── callout ── */
+.callout{background:var(--surface);border-left:3px solid #b07820;border-radius:0 6px 6px 0;padding:12px 16px;margin:12px 0 18px;font-size:14px;color:#a8accc;line-height:1.85}
+.callout.blue{border-color:#2a5580}
+.callout.green{border-color:#1e5a3a}
+
+/* ── table ── */
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0 20px;border-radius:6px}
+.cmp-table{width:100%;border-collapse:collapse;font-size:13.5px;table-layout:auto;min-width:360px}
+.cmp-table th{background:#1c1e2c;color:var(--accent2);padding:9px 12px;text-align:left;font-weight:700;border:1px solid #2e3248;font-size:12px;white-space:nowrap}
+.cmp-table td{padding:8px 12px;border:1px solid #22253a;color:#a8accc;vertical-align:top;word-break:keep-all;min-width:60px}
+.cmp-table td.rl{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:12px;width:1%;white-space:nowrap}
+
+/* ── math block ── */
+.math-block{background:#0c0d14;border:1px solid #22253a;border-radius:6px;padding:16px 20px;margin:10px 0;overflow-x:auto}
+.math-block .MathJax{color:#c0d0e0!important}
+.notes .MathJax{color:#c0d0e0}
+
+/* ── formula block (monospace) ── */
+.fblock{background:#0c0d14;border:1px solid #22253a;border-radius:6px;padding:14px 16px;margin:8px 0;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#b8cce0;line-height:2.1;white-space:pre-wrap}
+.fblock .hi{color:var(--accent2);font-weight:600}
+.fblock .dim{color:#3a4456}
+
+/* ── quiz block ── */
+.quiz{background:var(--surface);border-radius:10px;padding:20px;margin:24px 0;border-top:2px solid var(--accent)}
+.quiz .qlabel{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.quiz .qtext{font-size:14px;color:#c0c4e0;margin-bottom:14px;line-height:1.85}
+.gtable{width:100%;border-collapse:collapse;margin:8px 0 14px}
+.gtable td{padding:6px 10px;border:1px solid #22253a;font-size:13px}
+.gtable td:first-child{color:#5a5e78;width:1%;white-space:nowrap}
+.gtable td:last-child{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:12.5px}
+.slabel{font-size:11px;font-weight:700;color:#444;letter-spacing:.1em;text-transform:uppercase;margin:14px 0 7px;padding-top:13px;border-top:1px solid var(--border)}
+
+/* ── scrollbar ── */
+#sidebar::-webkit-scrollbar{width:4px}
+#sidebar::-webkit-scrollbar-thumb{background:#1e2030;border-radius:2px}
+
+@media(max-width:600px){#main{padding:60px 18px 90px}.ch-title{font-size:20px}}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},chtml:{scale:.76},options:{skipHtmlTags:['script','noscript','style','textarea','pre']},startup:{typeset:true}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<button id="toggle-btn" onclick="toggleSB()"><span></span><span></span><span></span></button>
+<div id="overlay" onclick="toggleSB()"></div>
+
+<nav id="sidebar">
+  <div id="sb-header">
+    <h1>ILA-101-S1</h1>
+    <p>壽險 &amp; 年金產品中文講義</p>
+  </div>
+  <div id="progress-wrap">
+    <div id="progress-label">學習進度 0 / 14</div>
+    <div id="progress-bar"><div id="progress-fill" style="width:0%"></div></div>
+  </div>
+  <ul id="ch-list">
+    <div class="sec-label">ILA101-100 · 壽險產品特性與定價</div>
+    <li><a class="ch-link" onclick="goTo('ch1',this)">
+      <span class="ck" id="ck-ch1"></span>
+      <span class="lbl">Ch.1 定期壽險<br><small style="opacity:.45">Term Insurance</small></span>
+    </a></li>
+    <li><a class="ch-link" onclick="goTo('ch2',this)">
+      <span class="ck" id="ck-ch2"></span>
+      <span class="lbl">Ch.2 終身壽險<br><small style="opacity:.45">Whole Life</small></span>
+    </a></li>
+    <li><a class="ch-link" onclick="goTo('ch3',this)">
+      <span class="ck" id="ck-ch3"></span>
+      <span class="lbl">Ch.3 萬能壽險<br><small style="opacity:.45">Universal Life</small></span>
+    </a></li>
+    <li><a class="ch-link" onclick="goTo('ch4',this)">
+      <span class="ck" id="ck-ch4"></span>
+      <span class="lbl">Ch.4 變額壽險<br><small style="opacity:.45">Variable Life Insurance</small></span>
+    </a></li>
+    <li><a class="ch-link" onclick="goTo('ch5',this)">
+      <span class="ck" id="ck-ch5"></span>
+      <span class="lbl">Ch.5 連生壽險<br><small style="opacity:.45">Survivorship Insurance</small></span>
+    </a></li>
+    <li><a class="ch-link" onclick="goTo('ch6',this)">
+      <span class="ck" id="ck-ch6"></span>
+      <span class="lbl">Ch.6 次標準體額外保費<br><small style="opacity:.45">Substandard Premiums</small></span>
+    </a></li>
+    <li><a class="ch-link" onclick="goTo('ch7',this)">
+      <span class="ck" id="ck-ch7"></span>
+      <span class="lbl">加速給付附約<br><small style="opacity:.45">Life Insurance Acceleration Riders</small></span>
+    </a></li>
+  <div class="sec-label">ILA101-101 · 年金產品特性與定價</div>
+    <li><a class="ch-link" onclick="goTo('a2ch1',this)">
+      <span class="ck" id="ck-a2ch1"></span>
+      <span class="lbl">Ch.1 固定遞延年金<br><small style="opacity:.45">Fixed Deferred Annuities</small></span>
+    </a></li>
+    <li><a class="ch-link" onclick="goTo('a2ch2',this)">
+      <span class="ck" id="ck-a2ch2"></span>
+      <span class="lbl">Ch.2 變額年金<br><small style="opacity:.45">Variable Annuities</small></span>
+    </a></li>
+    <li><a class="ch-link" onclick="goTo('a2ch3',this)">
+      <span class="ck" id="ck-a2ch3"></span>
+      <span class="lbl">Ch.3 固定指數年金<br><small style="opacity:.45">Fixed Indexed Annuities</small></span>
+    </a></li>
+    <li><a class="ch-link" onclick="goTo('a2ch4',this)">
+      <span class="ck" id="ck-a2ch4"></span>
+      <span class="lbl">Ch.4 即期年金<br><small style="opacity:.45">Income Annuities</small></span>
+    </a></li>
+    <li><a class="ch-link" onclick="goTo('a2ch5',this)">
+      <span class="ck" id="ck-a2ch5"></span>
+      <span class="lbl">RILA 注冊指數連結年金<br><small style="opacity:.45">Registered Index-Linked Annuities</small></span>
+    </a></li>
+    <li><a class="ch-link" onclick="goTo('a2ch6',this)">
+      <span class="ck" id="ck-a2ch6"></span>
+      <span class="lbl">結構化和解年金<br><small style="opacity:.45">Structured Settlement Annuities</small></span>
+    </a></li>
+    <li><a class="ch-link" onclick="goTo('a2ch7',this)">
+      <span class="ck" id="ck-a2ch7"></span>
+      <span class="lbl">退休金風險移轉<br><small style="opacity:.45">Pension Risk Transfer</small></span>
+    </a></li>
+    </ul>
+</nav>
+
+<main id="main">
+
+<!-- ═══════════════════════════════════════════════
+     CH1  定期壽險
+═══════════════════════════════════════════════ -->
+<article class="ch-block" id="ch1">
+<div class="ch-meta">ILA101-100 Ch. 1 · Section A.1</div>
+<div class="ch-title">定期壽險</div>
+<div class="ch-subtitle">Term Insurance — Characteristics &amp; Pricing</div>
+<button class="done-btn" id="db-ch1" onclick="toggleDone('ch1')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>保障期間與保額型態（Coverage periods &amp; face amount patterns）：Level / Decreasing / Increasing</li>
+  <li>保費型態（Premium patterns）：Level、Modified、Increasing every n years、Level then ART</li>
+  <li>三種費率表（Premium schedules）：Attained Age / Select Scale / Select &amp; Ultimate（S&amp;U）</li>
+  <li>分紅型 vs. 非分紅型定期險（Par vs. Non-Par term）</li>
+  <li>附約（Riders）：Term riders、WOP、ROP、ADB、Guaranteed Insurability、慢性/重大疾病、Disability、LTC</li>
+  <li>轉換選擇權（Term conversion options）：定義、成本管理、三種收費哲學、公式</li>
+  <li>主要定價考量（Pricing considerations）：死亡率、失效率、核保（AUW）、費用、利潤指標、法規</li>
+</ol>
+</div>
+
+<h2>一、定期壽險特性（Characteristics of Term Insurance）</h2>
+
+<h3>保障期間與保額型態（Coverage Periods &amp; Face Amount Patterns）</h3>
+<p>定期壽險（<span class="en">term insurance</span>）在特定、有限的保障期間內提供<span class="en">death benefit（DB，死亡給付）</span>保障。被保人在期間內未死亡，保單即到期失效。</p>
+<ul>
+  <li><span class="kw">Level term（水平定期）</span>：保額固定，保障 10–30 年或至特定年齡（如 65 歲），最常見</li>
+  <li><span class="kw">Decreasing term（遞減定期）</span>：保額隨需求下降（例如房貸餘額），通常每年調整一次；後期保額常有下限（floor），例如原始保額的 20%</li>
+  <li><span class="kw">Increasing term（遞增定期）</span>：保額與指數（如 CPI）掛鉤，常以 one-year term rider 形式附加於終身壽險</li>
+</ul>
+<div class="callout">💡 定期險也可作為附約（rider）附加於其他保單，例如 <strong>preliminary term</strong>：第一年繳定期保費，之後轉為較高的終身壽險保費。</div>
+
+<h3>保費型態（Premium Patterns）</h3>
+<ul>
+  <li><span class="kw">Level（全期平準）</span>：整個保障期間保費固定，最常見</li>
+  <li><span class="kw">Modified（修改式）</span>：期間內有 1–2 次調升（例如前 3–5 年較低，之後提升）</li>
+  <li><span class="kw">Increasing every n years（每 n 年遞增）</span>：初期保費最低，佣金也較低；減少產生 CSV 的機會，但在 OYT 費率斜率與 DB 斜率不同時，可能導致保費不規則</li>
+  <li><span class="kw">Level then ART（水平後改為逐年可續保）</span>：先固定期後改為 annual renewable term</li>
+</ul>
+
+<h3>三種保費費率表（Premium Schedules）</h3>
+<div class="tscroll"><table class="cmp-table">
+  <tr><th>費率表</th><th>定義（Definition）</th><th>優點（Advantage）</th><th>挑戰（Challenge）</th></tr>
+  <tr>
+    <td class="rl">Attained Age（達齡）</td>
+    <td>同年齡的所有人繳相同保費，不論投保年度</td>
+    <td>最易管理（simplest to administer）</td>
+    <td>對特定年齡區間競爭力差；保費通常比 Select 或 S&U 高</td>
+  </tr>
+  <tr>
+    <td class="rl">Select Scale（選擇期）</td>
+    <td>每個投保年齡有獨立的未來年保費表，依保單年度（duration）不同而異</td>
+    <td>反映核保篩選效果；保費較低、競爭力強</td>
+    <td>死亡率未來可能惡化；若 select 期結束仍持有，定價可能偏低</td>
+  </tr>
+  <tr>
+    <td class="rl">S&amp;U（選擇與終極）</td>
+    <td>先用 select scale 5 或 10 年，之後逐步混入 attained age scale</td>
+    <td>最能反映核保效果隨時間消退的實際情況</td>
+    <td>設計複雜；比 attained age 保費低，鼓勵持續但死亡率風險上升</td>
+  </tr>
+</table></div>
+
+<h3>分紅型 vs. 非分紅型（Par vs. Non-Par Term）</h3>
+<ul>
+  <li>兩者均保證整個保障期間的保費（guarantee premiums over the entire term）</li>
+  <li><span class="kw">Par term（分紅型）</span>：保費較高以資助分紅（<span class="en">dividends</span>）；優點：較低的赤字準備金（<span class="en">deficiency reserves</span>）、對不利經驗的緩衝；缺點：保費高，不流行</li>
+  <li>對抗 par term 高保費的方法：遞增保費方案（<span class="en">modified</span> 或 <span class="en">annually increasing</span>），使高保費被分紅抵消</li>
+</ul>
+
+<h3>不確定保費計畫（Indeterminate / Non-Guaranteed Premium Plans）</h3>
+<ul>
+  <li>允許公司未來調升保費，但初始保費通常保證 3–5 年</li>
+  <li>保費調整必須前瞻性（prospectively）進行，不能用來彌補過去損失</li>
+  <li>優點：可更積極定價（aggressive pricing）；缺點：調升保費後，健康者失效（lapse），留下高死亡風險族群——逆向選擇（<span class="en">anti-selection</span>）</li>
+</ul>
+
+<h3>保額規模與核保等級差異（Policy Size &amp; Risk Class）</h3>
+<ul>
+  <li>每千元保費（premium per 1,000）隨保額增加而<strong>下降</strong>（規模折扣，size discounts），定期險折扣幅度 &gt; 終身壽險</li>
+  <li>高保額保單通常轉給再保（reinsured）；精緻型購買者需要大保單但期間短，更易早期失效</li>
+  <li>吸菸者（smokers）保費高於非吸菸者；精選體（select risks）保費較低</li>
+  <li><span class="en">Lapse-supported design（依賴失效設計）</span>：依賴高失效率達到利潤目標；但高早期失效率難以回收取得成本</li>
+  <li><span class="en">Cross-subsidization（交叉補貼）</span>：某些費率格位需更積極定價以取得競爭優勢</li>
+</ul>
+
+<h3>附約（Policy Riders）</h3>
+<ul>
+  <li><span class="kw">Term riders</span>：可承保主被保人、配偶或子女（至 21 歲）；有時以分紅購買 one-year term（OYT）</li>
+  <li><span class="kw">WOP（Waiver of Premium，豁免保險費）</span>：合格殘廢時豁免保險費；依職業（occupation）判定殘廢；通常需殘廢持續最低期間（如 6 個月）；至特定年齡（如 65 歲）或康復時終止</li>
+  <li><span class="kw">ROP（Return of Premium，保費退還）</span>：以持續性獎勵或死亡時免稅退還保費</li>
+  <li><span class="kw">ADB（Accelerated Death Benefit，加速死亡給付）</span>：末期疾病（terminally ill，預期壽命 &lt; 12 個月）時預先給付部分 DB；加速後仍繼續繳費；死亡時 DB 減去已加速給付額</li>
+  <li><span class="kw">Guaranteed Insurability（保證可保性）</span>：無需額外核保即可增加保障</li>
+  <li><span class="kw">Chronic illness benefit（慢性疾病附約）</span>：無法執行 2 項以上 ADL 時給付部分 DB
+    <ul>
+      <li>6 項 ADL：eating（進食）、bathing（沐浴）、dressing（穿衣）、toileting（如廁）、transferring（移位）、continence（排泄）</li>
+    </ul></li>
+  <li><span class="kw">Critical illness benefit（重大疾病附約）</span>：符合重大疾病定義時給付：
+    <ul>
+      <li>心臟病發作（heart attack）、中風（stroke）、癌症（cancer）、冠狀動脈搭橋手術（coronary artery bypass surgery）</li>
+    </ul></li>
+  <li><span class="kw">Disability income benefit（失能所得附加特約）</span>：每月給付原始保額一定比例的收入</li>
+  <li><span class="kw">LTC benefit（長期看護附約）</span>：提供額外保障而<strong>不</strong>減少原始 DB（不同於 ADB）；資格通常基於 ADL 喪失及 LTC 費用</li>
+</ul>
+
+<h2>二、定期壽險定價考量（Pricing Considerations）</h2>
+
+<h3>死亡率（Term Mortality）</h3>
+<ul>
+  <li>定期險 <span class="en">NAR（Net Amount at Risk，淨危險保額）</span>通常高於永久壽險（因準備金低）<br>
+    公式：<span class="fblock"><span class="hi">NAR = Face Amount − Reserve（準備金）</span></span>
+  </li>
+  <li>整體而言，定期險死亡率 &lt; 永久壽險，原因：① 定期險平均保額較高（高保額死亡率低）② 死亡率曝險集中在 select period（核保效果最強時）③ 不健康者轉換至永久險，帶走最差死亡率</li>
+  <li>SOA 高保額死亡率研究重要結論：
+    <ul>
+      <li>VM-20（PBR）改變準備金要求，可能影響產品設計，進而影響死亡率</li>
+      <li>高保額定期險死亡率比高保額永久險<strong>差</strong>（large face term worse than large face permanent）</li>
+      <li>死亡率改善因性別和吸菸狀況不同：男性 &gt; 女性 &gt; 吸菸者</li>
+      <li>高保額（$1M+）死亡率比全保額池<strong>更佳</strong></li>
+    </ul>
+  </li>
+  <li>水平保費期後（<span class="en">post-level period</span>）：健康者離開，留下高死亡風險者，稱為 "conservation of deaths"（死亡保留）——一種嚴重的逆向選擇</li>
+</ul>
+
+<h3>失效率（Persistency / Lapse）</h3>
+<ul>
+  <li>高早期失效 → 難以回收取得成本；高後期失效 → 侵蝕預期利潤</li>
+  <li>費率斜率越陡（steeply sloped premium scales）→ 健康者更可能失效，留下高死亡風險族群（逆向選擇）</li>
+  <li>第一年定期失效率略低於永久險；但續期失效率（renewal lapse rates）高於永久險</li>
+</ul>
+
+<h3>核保（Underwriting）</h3>
+<ul>
+  <li>Select 和 super-select 核保等級越來越普遍</li>
+  <li>次標準體（substandard）定期險比永久險更不易取得</li>
+  <li><span class="kw">AUW（Accelerated Underwriting，加速核保）</span>：以預測分析（predictive analytics）取代體液檢查，減少時間、成本和干擾</li>
+  <li>SOA AUW Delphi 研究結論：大多數新技術捨棄體液（fluids）改用其他資料；AUW 使死亡率增加 5–10%（但隨更多人符合資格後預期收斂）；目前資料來源：Rx（處方藥記錄）、MIB；未來加入 EHR（電子健康紀錄）</li>
+</ul>
+
+<h3>佣金（Compensation）</h3>
+<ul>
+  <li>公司之間差異很大</li>
+  <li>定期險後期（renewal）佣金通常是第一年的「回收（recycled）」版本；業務員有誘因鼓勵失效並再銷售，增加第一年佣金</li>
+</ul>
+
+<h3>費用與通脹（Expenses &amp; Inflation）</h3>
+<ul>
+  <li>費用佔保費比例高（尤其 ART 保費較低時）；定期險利潤對費用分攤高度敏感</li>
+  <li>高通脹對定期險的風險 &gt; 終身壽險（WL 有大量準備金資產作緩衝）</li>
+</ul>
+
+<h3>五種利潤衡量指標（Profit Measures）</h3>
+<div class="math-block">
+\[1.\ Profit\ Margin = \frac{PV(Profits)}{PV(Premiums)}\]
+\[2.\ ROE = \frac{Net\ Income}{Equity}\]
+\[3.\ IRR:\ PV(Profits) = 0\]
+\[4.\ Surplus\ Strain = \frac{First\ Year\ Net\ Income}{First\ Year\ Premium}\]
+\[5.\ BEY:\ Accumulated\ Assets \geq Reserve\]
+</div>
+<div class="callout">💡 第一年淨收益（first year net income / income）通常為<strong>負值</strong>，因為前期取得成本高（佣金、核保費用等）。</div>
+
+<h3>法律與法規（Legal &amp; Regulatory Issues）</h3>
+<ul>
+  <li>各州管制：
+    <ul>
+      <li>保障期間上限（紐約州不允許超過 70 歲）</li>
+      <li>廣告與揭露規範</li>
+      <li>精算師認證</li>
+      <li>不可抗辯期（<span class="en">contestibility period</span>，通常 2 年）——不可抗辯期內保戶虛報，保險公司可拒絕理賠</li>
+    </ul></li>
+  <li>法定準備金（statutory reserves）：VM-20（PBR）正取代過於保守的 XXX 法規，對定期險利潤有重大影響</li>
+</ul>
+
+<h2>三、轉換選擇權（Term Conversion Options）</h2>
+
+<h3>基本概念</h3>
+<ul>
+  <li><span class="kw">Conversion（轉換）</span>：保單從一種形式轉換為另一種（通常保額不變）</li>
+  <li>最常見：定期險以<strong>相同核保等級</strong>轉換為終身壽險（WL），無需額外核保</li>
+  <li>可為保戶自由選擇（at policyholder's discretion）、限定時間（specific time frame）或自動觸發（automatic）</li>
+  <li>水平定期轉換比遞減定期常見（遞減定期的逆向選擇問題：病人傾向保留小保額保單）</li>
+</ul>
+
+<h3>管理轉換成本的方法</h3>
+<ul>
+  <li>用終期準備金（terminal reserve）資助部分保費，降低保戶成本</li>
+  <li>只對折扣後的保費支付佣金（commission only on discounted premium）</li>
+  <li>轉換好處：增加銷售吸引力、提高健康人保單繼續率（healthy lives convert = good persistency）、永久險通常更有利潤</li>
+</ul>
+
+<h3>三種收費哲學（Charging Philosophies）</h3>
+<ol>
+  <li>只向<strong>實際行使</strong>選擇權的人收費（those who exercise the option）→ 行使者保費最高</li>
+  <li>只向<strong>想要</strong>選擇權的人收費（those who want the option）→ 有選擇權的保戶保費較高</li>
+  <li>向<strong>所有人</strong>收費（spread the cost to all policyholders）</li>
+</ol>
+
+<h3>轉換定價假設（Conversion Pricing Assumptions）</h3>
+<ul>
+  <li>預計行使選擇權的比例（proportion expected to exercise）</li>
+  <li>可行使的保障百分比（percent of coverage eligible for conversion）</li>
+  <li>失效假設（lapse assumptions，轉換後通常很低）</li>
+  <li>死亡率（行使率低時通常偏高；逆向選擇風險）</li>
+</ul>
+
+<h3>轉換成本公式（Conversion Cost Formula）</h3>
+<p>在年齡 \(x\) 時，第 \(r\) 年度轉換的額外死亡成本現值（Present value of extra mortality cost）：</p>
+<div class="math-block">
+\[A_{x,r} = {}_{r}p_x \cdot e_{x,r} \cdot K_{x,r} \cdot v^r\]
+\[K_{x,r} = \sum_{t=1}^{\infty} {}_{t-1}p_{x+r} \cdot v^t \cdot \left(q^C_{x+r+t-1} - q^S_{x+r+t-1}\right) \cdot AR_{x+r+t-1}\]
+</div>
+<div class="fblock"><span class="hi">q<sup>C</sup></span> = 轉換後 WL 保單的死亡率（converted policy mortality）
+<span class="hi">q<sup>S</sup></span> = 標準 WL 保單的死亡率（standard policy mortality）
+<span class="hi">AR</span>  = 每年淨危險保額（net amount at risk each year）
+<span class="hi">e<sub>x,r</sub></span> = 第 r 年度轉換的機率（probability of conversion at duration r）</div>
+
+<div class="quiz">
+<div class="qlabel">📝 計算練習 — 轉換成本（Conversion Cost）</div>
+<div class="qtext">某公司發行一個 10 年期 $100,000 保額定期險。保戶可在第 1、2、3 保單週年日轉換為 WL。每年轉換機率（e）= 5%，折現率 3%。以下為各年度資料：</div>
+<table class="gtable">
+  <tr><td>保單年度</td><td>qₓ（死亡率）/ 轉換 WL 的 PVFB / 標準 WL 的 PVFB</td></tr>
+  <tr><td>Dur=1, q=0.0050</td><td>PVFB(C)=28,120 / PVFB(S)=24,596</td></tr>
+  <tr><td>Dur=2, q=0.0060</td><td>PVFB(C)=29,720 / PVFB(S)=26,096</td></tr>
+  <tr><td>Dur=3, q=0.0080</td><td>PVFB(C)=31,320 / PVFB(S)=27,596</td></tr>
+</table>
+<div class="slabel">解題思路（Solution）</div>
+<p style="font-size:13.5px;color:#a0a4c0;margin-bottom:10px">每年轉換成本 ＝ 轉換機率 × 死亡率 × （轉換 WL 的 PVFB − 標準 WL 的 PVFB）× 折現因子</p>
+<div class="math-block">
+\[\text{Year 1: } 0.05 \times 0.0050 \times (28{,}120 - 24{,}596) \times (1.03)^{-1} = \mathbf{0.856}\]
+\[\text{Year 2: } 0.05 \times 0.0060 \times (29{,}720 - 26{,}096) \times (1.03)^{-2} = \mathbf{1.023}\]
+\[\text{Year 3: } 0.05 \times 0.0080 \times (31{,}320 - 27{,}596) \times (1.03)^{-3} = \mathbf{1.364}\]
+\[\text{Total Conversion Cost} = 0.856 + 1.023 + 1.364 = \mathbf{3.24 \text{ per policy}}\]
+</div>
+</div>
+
+</div><!-- notes -->
+</article>
+
+<!-- ═══════════════════════════════════════════════
+     CH2  終身壽險
+═══════════════════════════════════════════════ -->
+<article class="ch-block" id="ch2">
+<div class="ch-meta">ILA101-100 Ch. 2 · Section A.1</div>
+<div class="ch-title">終身壽險</div>
+<div class="ch-subtitle">Whole Life Insurance — Characteristics &amp; Pricing</div>
+<button class="done-btn" id="db-ch2" onclick="toggleDone('ch2')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>WL 與定期險的關鍵差異（Key differences with term）：保障終身、有現金價值（CSV）</li>
+  <li>分紅型 WL（Participating WL）：分紅定義及 3 種保單紅利選擇（dividend options）</li>
+  <li>三種保費型態（Premium patterns）：Ordinary level、Indeterminate、Limited payment</li>
+  <li>現金價值（Cash Value）概念：NAR 圖形、CSV 隨年齡累積</li>
+  <li>定價考量（Pricing considerations）：死亡率、失效率（Persistency）、核保</li>
+</ol>
+</div>
+
+<h2>一、終身壽險特性（Characteristics of Whole Life）</h2>
+
+<h3>基本定義與與定期險的差異</h3>
+<p><span class="kw">終身壽險（Whole Life, WL）</span>是一種<span class="en">permanent life insurance（永久壽險）</span>：只要持續繳費，保障終身有效。</p>
+<ul>
+  <li>保費在繳費期間固定（premiums remain fixed over the premium-paying period）</li>
+  <li>與定期險不同：
+    <ul>
+      <li>WL 在被保人生存期間持續有效（stays in force over the insured's life as long as premiums are paid）</li>
+      <li>WL 依已繳保費扣除費用與死亡費用後，提供<span class="en">tabular cash value（表格式現金價值，CSV）</span></li>
+    </ul>
+  </li>
+</ul>
+
+<div class="callout">
+  💡 <strong>NAR 概念圖解：</strong><br>
+  死亡給付（Death Benefit, DB）= NAR（Net Amount at Risk）+ CSV（現金價值）<br>
+  隨年齡增長，CSV 持續累積，NAR 持續縮小。在保單成熟年齡（通常 100 歲）時，CSV ≈ DB（保單完全「繳清」）。<br>
+  定期險通常<strong>無 CSV</strong>；WL 有 CSV，這是兩者的核心差異。
+</div>
+
+<h3>分紅型與非分紅型（Participating vs. Non-Participating WL）</h3>
+<ul>
+  <li><span class="kw">Par WL（分紅型）</span>：允許保戶透過<span class="en">policyholder dividends（保單紅利）</span>分享保險公司利潤</li>
+  <li>三種保單紅利選擇（Dividend Options）：
+    <ol>
+      <li><span class="en">Receive in cash（現金支付）</span></li>
+      <li><span class="en">Apply against premiums（抵繳保費）</span></li>
+      <li><span class="en">Purchase paid-up additions (PUAs) and/or one-year term (OYT) insurance（購買繳清增額或一年定期）</span>：每次分紅用作單一保費購買新的 DB「份額」，使總 DB 隨時間增加</li>
+    </ol>
+  </li>
+</ul>
+
+<h3>三種保費型態（Premium Patterns）</h3>
+<ol>
+  <li><span class="kw">Ordinary level premium WL（普通平準保險費）</span>：終身繳費，金額固定，最常見</li>
+  <li><span class="kw">Indeterminate premium WL（不確定保費）</span>：非分紅型 WL，保費每年可調整以反映實際經驗；不得超過預先設定的保證最高費率（guaranteed maximum rates）；通常初始保費低於普通水平保費</li>
+  <li><span class="kw">Limited payment WL（有限繳費）</span>：
+    <ul>
+      <li>例如 20-Pay WL：繳費 20 年後保單即為繳清（paid-up）</li>
+      <li><span class="en">Single premium WL（躉繳）</span>：一次付清；適用退休規劃或遺產規劃；比傳統 WL 更具投資導向</li>
+    </ul>
+  </li>
+</ol>
+
+<h2>二、終身壽險定價考量（Pricing Considerations）</h2>
+
+<h3>死亡率（Mortality）</h3>
+<ul>
+  <li>WL 的死亡率風險較定期險<strong>更嚴重</strong>，原因：無保費調整彈性（no premium flexibility）+ 保障期間非常長（very long coverage period）</li>
+  <li>缺乏保費調整空間 → 死亡率假設必須更保守</li>
+</ul>
+
+<h3>失效率（Persistency / Lapse）</h3>
+<ul>
+  <li>失效率影響死亡率和費用等其他假設</li>
+  <li>SOA 2012 保單繼續率研究（Persistency Study）重要結論：
+    <ul>
+      <li>WL 失效率整體下降</li>
+      <li>經濟環境差時失效率升高（如 2008 金融危機）</li>
+      <li>小保額保單（small policies）早期失效率高，後期反轉</li>
+      <li>男女失效率相近</li>
+      <li>非體檢（non-exam）和簡化核保（simplified underwriting）保單有較高早期失效率</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>核保（Underwriting）</h3>
+<ul>
+  <li>趨勢：向 AUW（加速核保）靠攏，與定期險類似</li>
+</ul>
+
+</div>
+</article>
+
+<!-- ═══════════════════════════════════════════════
+     CH3  萬能壽險
+═══════════════════════════════════════════════ -->
+<article class="ch-block" id="ch3">
+<div class="ch-meta">ILA101-100 Ch. 3 · Section A.1</div>
+<div class="ch-title">萬能壽險</div>
+<div class="ch-subtitle">Universal Life — Characteristics, Variations &amp; Pricing</div>
+<button class="done-btn" id="db-ch3" onclick="toggleDone('ch3')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>UL 現金價值公式（Cash value formula）及 12 個主要特性</li>
+  <li>每月 UL 現金價值計算題（Monthly UL mechanics illustration）</li>
+  <li>計息利率兩種方法（Crediting rates）：Portfolio rate vs. New money rate</li>
+  <li>COI（死亡費用）費率表：Attained age vs. S&amp;U，Reverse S&amp;U 設計</li>
+  <li>其他 UL 產品：
+    <ul>
+      <li>ULSG（MNLP &amp; Shadow Account 設計）</li>
+      <li>IUL（指數型萬能壽險）</li>
+      <li>FPUL（固定保費 UL，含消失保費設計）</li>
+      <li>SPUL（躉繳）、GUL（團體）</li>
+    </ul></li>
+  <li>UL 三個利潤來源（Sources of profit）</li>
+  <li>資產負債分析（Asset/Liability analysis）：利率上升 → 解約增加 → 資產市值下降</li>
+</ol>
+</div>
+
+<h2>一、UL 基本特性（Characteristics of Flexible Premium UL）</h2>
+
+<h3>現金價值公式（Cash Value Formula）</h3>
+<div class="math-block">
+\[CV_t = (CV_{t-1} + \text{Prem}_t - \text{Charges}_t)(1 + r)\]
+</div>
+<p>每月從現金價值明確扣除死亡費用（COI）和費用（expenses）；每月計息。</p>
+
+<h3>主要特性清單（12 Key Features）</h3>
+<ol>
+  <li><span class="kw">現金價值（Cash Value）</span>：依上述公式累積</li>
+  <li><span class="kw">計息利率（Credited Rate）</span>：有保證最低利率（guaranteed minimum，如 2–4%）；可宣告更高現行利率</li>
+  <li><span class="kw">死亡費用（COI, Cost of Insurance）</span>：有保證最高費率（guaranteed maximum）；以達齡（attained age）或 S&amp;U 費率計收</li>
+  <li><span class="kw">解約費用（Surrender Charges）</span>：保戶前 10–20 年解約時扣除，以回收取得成本</li>
+  <li><span class="kw">費用（Expenses）</span>：前端費用（FEL, Front-End Load）及月固定費用</li>
+  <li><span class="kw">死亡給付選項（DB Options）</span>：Option 1（僅保額）或 Option 2（保額 + 現金價值）；法規規定走廊因子（Corridor Factor）：DB ≥ Corridor Factor × CV</li>
+  <li><span class="kw">保額可變更（DB changes allowed）</span>：投保後可增加或減少</li>
+  <li><span class="kw">保費彈性（Flexible Premiums）</span>：保費金額和頻率由保戶決定</li>
+  <li><span class="kw">部分提領（Partial Withdrawals）</span>：比傳統壽險更易處理；提領後 DB 和 CV 均減少：新 CV = 舊 CV − 提領額 − 手續費；新保額 = 舊保額 − 提領額</li>
+  <li><span class="kw">保單質押貸款（Policy Loans）</span>：借款金額繼續計息（gross of loan），但借出部分計息率較低；公司可繼續賺取利差</li>
+  <li><span class="kw">附約（Riders）</span>：
+    <ul style="counter-reset:none;list-style:none">
+      <li style="counter-increment:none">基本：WOP（豁免保險費）、意外身故、保證可保性</li>
+      <li style="counter-increment:none">附加被保人：配偶、其他附加被保人、子女</li>
+      <li style="counter-increment:none">近年普遍：LTC（長期看護）、殘廢收入、重大疾病、慢性疾病附約</li>
+    </ul>
+  </li>
+  <li><span class="kw">持續性獎勵（Persistency Bonuses）</span>：達到一定年限後計入現金價值；部分州不允許非保證獎勵（tontine 風險）</li>
+</ol>
+
+<h3>計息利率：Portfolio vs. New Money</h3>
+<div style="display:flex;flex-direction:column;gap:10px;margin:14px 0 20px">
+  <div style="background:#1c1e28;border:1px solid #2a2d3e;border-radius:8px;padding:14px 16px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#79b4f5;margin-bottom:8px">Portfolio rate（投資組合法）</div>
+    <p style="font-size:13.5px;color:#a8accc;margin:0 0 8px">所有保單帳戶值適用相同利率（全部資產加權平均殖利率）</p>
+    <div style="display:flex;gap:12px;font-size:13px">
+      <span>利率下降：<strong style="color:#5aaa7a">✓ 偏好</strong>（利率相對較高）</span>
+      <span>利率上升：<strong style="color:#a05a5a">✗ 不偏好</strong></span>
+    </div>
+  </div>
+  <div style="background:#1c1e28;border:1px solid #2a2d3e;border-radius:8px;padding:14px 16px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#79b4f5;margin-bottom:8px">New money rate（新資金法）</div>
+    <p style="font-size:13.5px;color:#a8accc;margin:0 0 8px">依保費繳入時機，各部分帳戶值適用不同利率；需追蹤每批保費對應資產</p>
+    <div style="display:flex;gap:12px;font-size:13px">
+      <span>利率下降：<strong style="color:#a05a5a">✗ 不偏好</strong></span>
+      <span>利率上升：<strong style="color:#5aaa7a">✓ 偏好</strong>（享受高利率）</span>
+    </div>
+  </div>
+</div>
+<div class="callout">⚠️ 主要風險：<strong>Spread Compression（利差壓縮）</strong>——利率下降時，計息率降低但投資報酬也降低，公司利差受到雙重擠壓。</div>
+
+<h3>COI（死亡費用）費率表設計</h3>
+<ul>
+  <li><span class="kw">Attained age（達齡）</span> for select risks → 早期 COI 收入較高（可用於補貼利潤或取得成本）；稱為 "reverse S&amp;U scale"</li>
+  <li><span class="kw">S&amp;U（選擇與終極）</span>：UL 與定期險競爭時使用，保持早期 COI 低，比較競爭</li>
+</ul>
+
+<div class="quiz">
+<div class="qlabel">📝 計算練習 — 月度 UL 現金價值</div>
+<div class="qtext">$100,000 Option 1 彈性保費 UL；5% FEL；每月 $3 固定費用；月計息率 5%/12；以下為前三個月資料：</div>
+<table class="gtable">
+  <tr><td>Month 1</td><td>Premium=100, FEL=−5, Fixed Exp=−3, COI=−41.76</td></tr>
+  <tr><td>Month 2</td><td>Premium=100, FEL=−5, Fixed Exp=−3, COI=−41.74</td></tr>
+  <tr><td>Month 3</td><td>Premium=300, FEL=−15, Fixed Exp=−3, COI=−41.72</td></tr>
+</table>
+<div class="slabel">解答（CV at end of each month）</div>
+<div class="math-block">
+\[CV_1 = (0 + 100 - 5 - 3 - 41.76)(1.05)^{1/12} = 50.44\]
+\[CV_2 = (50.44 + 100 - 5 - 3 - 41.74)(1.05)^{1/12} = 101.11\]
+\[CV_3 = (101.11 + 300 - 15 - 3 - 41.72)(1.05)^{1/12} = 342.78\]
+</div>
+</div>
+
+<h2>二、其他 UL 產品（Other UL Products）</h2>
+
+<h3>ULSG（附次要保證的萬能壽險，UL with Secondary Guarantees）</h3>
+<p>2000 年代初期流行，強調<span class="en">death protection（壽險保障）</span>而非現金價值累積，以較低保費提供保終身保障。</p>
+<ul>
+  <li><span class="kw">Secondary guarantee（次要保證）</span>：只要滿足最低保費要求，保單保證不失效</li>
+  <li><span class="kw">MNLP（Minimum No-Lapse Premium，最低不失效保費）</span>：最基本設計；累積最低保費即觸發保證；MNLP 保費幾乎不產生 CSV</li>
+  <li><span class="kw">Shadow Account（影子帳戶）設計</span>：影子帳戶 &gt; 0 時保單繼續有效；影子帳戶有獨立費用/計息；影子帳戶值 ≠ CSV（影子帳戶甚至可在 CSV 為負時仍為正）；某些設計極複雜，有多個影子帳戶</li>
+  <li>可能為 lapse-supported 設計</li>
+  <li>準備金影響：Model Reg 830（XXX）和 AG 38（AXXX）大幅增加 ULSG 準備金 → 需要融資解決（captive reinsurance 等）→ AG 48 提供統一標準；VM-20 應取代 XXX/AXXX，簡化 ULSG 設計</li>
+  <li>投資者持有（investor-owned / settlement market）的 ULSG 失效率 ≈ 0%</li>
+</ul>
+
+<h3>IUL（指數型萬能壽險，Indexed Universal Life）</h3>
+<p>除保證最低計息率外，提供基於指數（如 S&amp;P 500）的額外計息機會。</p>
+<div class="math-block">
+\[\text{Index Crediting Rate} = \max\!\Big[\min\!\big(\text{Index Change} \times \text{Participation Rate},\ \text{Cap}\big),\ \text{Floor}\Big]\]
+</div>
+<p>兩種常見指數變動計算方法：</p>
+<ol>
+  <li><span class="kw">Point-to-Point（PTP，區間始末）</span>：
+    <div class="math-block">\[\text{Index Change} = \frac{\text{Index}_{\text{End of Segment}}}{\text{Index}_{\text{Beginning of Segment}}} - 1\]</div>
+  </li>
+  <li><span class="kw">Averaging（平均法）</span>：
+    <div class="math-block">\[\text{Index Change} = \frac{\frac{1}{12}\sum_{m=1}^{12}\text{Index}_m}{\text{BOY Index}} - 1\]</div>
+  </li>
+</ol>
+<div class="callout">💡 <strong>AG 49</strong>：對 IUL 銷售說明書中使用的計息率提供指引（guidelines for crediting rates in IUL illustrations）。</div>
+
+<h3>FPUL（固定保費萬能壽險，Fixed Premium UL）</h3>
+<p>又稱 "Interest-sensitive whole life"（利率敏感型終身壽險）。</p>
+<div class="math-block">
+\[\text{CSV} = \max\!\big(\text{Guaranteed CSV},\ \text{Accumulation Account} - \text{Surrender Charges}\big)\]
+</div>
+<ul>
+  <li><span class="kw">Vanishing Premium（消失保費）</span>：最流行設計；當實際 CV &gt; 保證最低值，或實際 CV &gt; 基於現行假設的純保費（net single premium）時，保費停止要求；公司可選擇是否支付佣金給已消失的保費</li>
+  <li>優點：比彈性保費 UL 更類似 WL（保戶視角）；佣金較高（業務員視角）；固定保費提升保單繼續率（公司視角）</li>
+  <li>缺點：缺乏保費彈性；接受額外保費的行政複雜性；消失保費未必真的消失（利率下降時）</li>
+</ul>
+
+<h3>SPUL（躉繳萬能壽險，Single Premium UL）</h3>
+<ul>
+  <li>一次性大額繳費；更具投資導向</li>
+  <li>1980 年代稅法大幅限制 UL 前期繳費金額</li>
+</ul>
+
+<h3>GUL（團體萬能壽險，Group UL）</h3>
+<ul>
+  <li>行銷對象：雇主或員工群體；保費常以薪資扣款支付</li>
+  <li>優點：可在團體基礎上變更費用；超過 30 州免個別申報；團體特有功能（experience rating、guaranteed issue）</li>
+</ul>
+
+<h2>三、UL 定價考量（Pricing Considerations for UL）</h2>
+
+<h3>三個利潤來源（Sources of Profit）</h3>
+<ol>
+  <li><span class="kw">投資利潤</span>：Interest Earned（投資收益）− Interest Credited（計息利息）</li>
+  <li><span class="kw">死亡率利潤</span>：COI Charges（COI 費用收入）− Death Benefits Paid（已給付死亡保險金）</li>
+  <li><span class="kw">費用利潤</span>：Expense Charges + Surrender Charges − （Expenses + Commissions）</li>
+</ol>
+
+<h3>定價挑戰</h3>
+<ul>
+  <li>保費彈性帶來複雜性（保額變更、部分提領等）；需進行<span class="en">scenario testing（情境測試）</span></li>
+  <li><span class="kw">A/L analysis（資產負債分析）</span>：利率上升 → 解約增加、資產市值下降（<span class="en">disintermediation risk，逆仲介風險</span>）</li>
+</ul>
+
+</div>
+</article>
+
+<!-- ═══════════════════════════════════════════════
+     CH4  變額壽險
+═══════════════════════════════════════════════ -->
+<article class="ch-block" id="ch4">
+<div class="ch-meta">ILA101-100 Ch. 4 · Section A.1</div>
+<div class="ch-title">變額壽險</div>
+<div class="ch-subtitle">Variable Life Insurance — VUL &amp; Fixed Premium Variable Life</div>
+<button class="done-btn" id="db-ch4" onclick="toggleDone('ch4')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>VUL 與 UL 的相似點（6 項）</li>
+  <li>VUL 與 UL 的差異（4 項）：分離帳戶、無保證 CSV、CSV 隨市場波動、銷售費用受限</li>
+  <li>固定保費變額壽險（FPVL）與 WL 的差異（3 項）</li>
+  <li>Equitable Design：最流行的固定保費設計；PUAs 機制</li>
+  <li>SEC 證券監管</li>
+</ol>
+</div>
+
+<h2>一、VUL 特性（Variable Universal Life）</h2>
+
+<h3>VUL 與 UL 的相似點（Similarities with UL）</h3>
+<ul>
+  <li>保費可彈性或固定</li>
+  <li>死亡給付選項：僅保額（face only）或保額加現金價值（face + CV）</li>
+  <li>可變更保額（changes in DB allowed）</li>
+  <li>相似的月費用（monthly charges for mortality and riders）</li>
+  <li>相似的佣金結構</li>
+  <li>保單質押貸款處理方式相同（treatment of policy loans）</li>
+</ul>
+
+<h3>VUL 與 UL 的差異（Differences with UL）</h3>
+<div class="tscroll"><table class="cmp-table">
+  <tr><th>項目</th><th>UL（萬能壽險）</th><th>VUL（變額萬能壽險）</th></tr>
+  <tr>
+    <td class="rl">保費投資位置</td>
+    <td>一般帳戶（General Account）</td>
+    <td>分離帳戶（Separate Account）：股票、債券、貨幣市場等；由保管銀行獨立持有</td>
+  </tr>
+  <tr>
+    <td class="rl">CSV 保證</td>
+    <td>有保證最低 CSV</td>
+    <td><strong class="tag-n">無保證最低 CSV</strong>（no guaranteed cash values）</td>
+  </tr>
+  <tr>
+    <td class="rl">CSV 變動</td>
+    <td>隨計息利率（declared rate）變動</td>
+    <td>直接隨分離帳戶績效（separate account performance）波動</td>
+  </tr>
+  <tr>
+    <td class="rl">銷售佣金</td>
+    <td>一般費率</td>
+    <td>受 SEC 法規限制；銷售費用（sales loads）較低</td>
+  </tr>
+</table></div>
+<div class="callout">💡 VUL 保費投入<strong>分離帳戶</strong>（separate account），保戶承擔所有投資風險；1990 年代以來因低利率環境和基金選項擴充而銷量增加。</div>
+
+<h2>二、固定保費變額壽險（Fixed Premium Variable Life, FPVL）</h2>
+
+<h3>FPVL 與 WL 的差異</h3>
+<ul>
+  <li>FPVL 的 CSV 不確定（uncertain），直接隨分離帳戶績效波動（WL 的 CSV 預先確定）</li>
+  <li>FPVL 的 CSV 無保證最低值（no guaranteed minimum CSV）</li>
+  <li>FPVL 的 DB 依據固定區間（月或年）波動</li>
+</ul>
+
+<h3>Equitable Design（最流行的固定保費設計）</h3>
+<ul>
+  <li>毛保費固定（gross premiums are fixed）</li>
+  <li>當分離帳戶績效 &gt; AIR（Assumed Investment Return，假設投資報酬率）時：購買正的繳清增額（positive PUAs）→ DB 上升</li>
+  <li>當分離帳戶績效 &lt; AIR 時：購買負的 PUAs（negative PUAs）→ DB 下降</li>
+  <li>DB 永遠不低於保證最低值（guaranteed minimum DB）</li>
+  <li>PUAs 機制使 DB 變動較為平緩（muted effect），而非直接反映帳戶值變動</li>
+</ul>
+
+</div>
+</article>
+
+<!-- ═══════════════════════════════════════════════
+     CH5  連生壽險
+═══════════════════════════════════════════════ -->
+<article class="ch-block" id="ch5">
+<div class="ch-meta">ILA101-100 Ch. 5 · Section A.1</div>
+<div class="ch-title">連生壽險</div>
+<div class="ch-subtitle">Survivorship Insurance — Market, Mortality Methods &amp; Pricing</div>
+<button class="done-btn" id="db-ch5" onclick="toggleDone('ch5')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>連生壽險市場：用途、保額特性、Par WL 設計</li>
+  <li>Single status vs. Dual status：定義、CSV「跳升」現象、選擇因素（5 項）</li>
+  <li>雙重地位三種計算方法：Exact Age / Joint Equal Age（JEA）/ Equivalent Single Age（ESA）</li>
+  <li>次標準體與不可承保人：三種評級方法（Age Rateup / Extra Premium / COI Multiple）、不可承保承保條件</li>
+  <li>附約種類（4 種）：PUAs &amp; term、Policy split、Estate preservation、First-to-die term</li>
+  <li>定價考量（6 項）：死亡率、失效率、費用、再保、稅務</li>
+</ol>
+</div>
+
+<h2>一、連生壽險特性（Characteristics of Survivorship Insurance）</h2>
+
+<h3>基本定義與市場</h3>
+<ul>
+  <li><span class="kw">Joint and survivor（連生及最後生存者）</span>：在<strong>最後一位</strong>被保人死亡時給付；典型市場為已婚夫婦（第二位配偶死亡時給付）</li>
+  <li>用途：<span class="en">wealth preservation/transfer post-retirement（退休後財富保全/移轉）</span>；常用於支付遺產稅，尤其當遺產資產缺乏流動性時（如家族企業）</li>
+  <li>通常涉及高保額（high face amount）、高保費，銷售對象為精緻買家（sophisticated buyers）</li>
+  <li>最常見形式：<span class="en">participating WL</span>，分紅用於購買 term 附約和 PUAs 的混合組合；每次分紅作為單一保費購買新的 DB，使總 DB 隨時間增加而不增加保費</li>
+  <li>UL 和利率敏感型連生產品也存在，但行為傾向模擬 par WL</li>
+</ul>
+
+<h3>附約種類（Survivorship Insurance Riders）</h3>
+<ul>
+  <li><span class="kw">PUAs and term riders（最常見）</span>：用分紅購買，增加 DB</li>
+  <li><span class="kw">Policy split rider（保單分割附約）</span>：在特定觸發事件後（如稅法改變），可將聯合保單拆分為兩張個人保單；鮮少銷售但極有價值</li>
+  <li><span class="kw">Estate preservation rider（遺產保全附約）</span>：在第一人死亡後，增加 DB 以支付預期遺產稅</li>
+  <li><span class="kw">First-to-die term rider（先死給付定期附約）</span>：第一人死亡時給付；用途：① 繳清主約保費 ② 繳納遺產稅 ③ 回收已繳保費</li>
+</ul>
+
+<h2>二、連生死亡率方法（Joint Life Mortality Methods）</h2>
+
+<h3>Single Status vs. Dual Status</h3>
+<div class="tscroll"><table class="cmp-table">
+  <tr><th></th><th>Single Status（單一地位）</th><th>Dual Status（雙重地位）</th></tr>
+  <tr>
+    <td class="rl">地位定義</td>
+    <td>混合「兩人均在世」和「僅存一人」的地位</td>
+    <td>三種可能狀態：① X &amp; Y 均在世 ② 僅 X 在世 ③ 僅 Y 在世</td>
+  </tr>
+  <tr>
+    <td class="rl">CSV / 準備金走勢</td>
+    <td>較平滑（smoother）</td>
+    <td>第一人死亡後發生「跳升（jump）」</td>
+  </tr>
+  <tr>
+    <td class="rl">優點</td>
+    <td>行政較簡便；業務員只需展示一套 CSV；早期設計常用</td>
+    <td>逆向選擇風險較低（若一人健康差，single status 對保戶更有利）</td>
+  </tr>
+  <tr>
+    <td class="rl">缺點</td>
+    <td>逆向選擇風險較高（第一人死亡後，存活者的死亡費用可能低於 single status 所假設）</td>
+    <td>行政複雜；需為不同狀態展示不同 CSV；term 附約費用增加</td>
+  </tr>
+</table></div>
+
+<p><strong>選擇 Single vs. Dual Status 的 5 項考量：</strong></p>
+<ol>
+  <li>感知市場性（Perceived marketability）</li>
+  <li>行政可行性（Administrative feasibility）</li>
+  <li>監管機關態度（Regulators' attitudes）</li>
+  <li>感知風險特性（Perceived risk profile）</li>
+  <li>雙重地位定期附約費用增加的影響（Implications of increased dual-status term rider costs）</li>
+</ol>
+
+<h3>三種計算雙重地位的方法</h3>
+<ol>
+  <li><span class="kw">Exact Age（精確年齡）</span>：以精確年齡和各被保人特性，從基本原則計算；最精確但繁瑣；可能需要預先計算所有生命組合的結果</li>
+  <li><span class="kw">Joint Equal Age（JEA，聯合等齡）</span>：將兩個年齡轉換為相近的等齡組合；例如 (男55, 女52) ≈ (53, 53)（按查表取平均）；比 exact age 簡單；監管機關可能要求認證 JEA CSV ≥ Exact Age CSV</li>
+  <li><span class="kw">ESA（Equivalent Single Age，等效單一年齡）</span>：將兩個年齡換算成一個等效的單一年齡；趨勢：早期（高年齡時）超收保費，後期（低年齡時）收費不足</li>
+</ol>
+
+<h2>三、次標準體與不可承保（Substandards &amp; Uninsurables）</h2>
+
+<h3>次標準體評級方法（Substandard Rating Methods）</h3>
+<ol>
+  <li><span class="kw">Age Rateup（年齡上調）</span>：指定次標準體一個較高的年齡；連生壽險比個人壽險更常用</li>
+  <li><span class="kw">Extra Premium（額外保費）</span>：增加次標準體的保費</li>
+  <li><span class="kw">COI Multiple（UL 的 COI 倍數）</span>：將 UL 的死亡費用乘以特定倍數</li>
+</ol>
+<div class="callout">💡 一位標準體 + 一位次標準體的連生保費 &lt;&lt; 兩張個人保單（標準 + 次標準）的保費之和 → 連生壽險對次標準體更友善！</div>
+
+<h3>不可承保人（Uninsurables）的承保條件</h3>
+<ul>
+  <li>不可處於末期疾病（not terminally ill）</li>
+  <li>須進行獨立核保（standalone underwriting）</li>
+  <li>預期壽命至少 1–2 年</li>
+  <li>評級上限通常為 Table D（不超過）</li>
+</ul>
+
+<h2>四、定價考量（Pricing Considerations）</h2>
+<ul>
+  <li><span class="kw">死亡率（Mortality）</span>：連生被保人的單人死亡率 ≠ 一般壽險市場；核保讓步（underwriting concessions）帶來風險；社經階層（socioeconomic class）影響死亡率；傳染風險（contagion factors）</li>
+  <li><span class="kw">失效率（Lapse）</span>：通常極低（very low lapse rates）</li>
+  <li><span class="kw">費用（Expenses）</span>：通常高於個人壽險</li>
+  <li><span class="kw">再保險（Reinsurance）</span>：在定價中非常重要；自留額（retention）可能高於其他保單</li>
+  <li><span class="kw">稅務（Taxes）</span>：保費稅等</li>
+</ul>
+
+</div>
+</article>
+
+<!-- ═══════════════════════════════════════════════
+     CH6  次標準體額外保費
+═══════════════════════════════════════════════ -->
+<article class="ch-block" id="ch6">
+<div class="ch-meta">ILA101-100 Ch. 6 · Section A.1</div>
+<div class="ch-title">次標準體額外保費</div>
+<div class="ch-subtitle">Extra Premiums for Substandard Life Insurance Risks</div>
+<button class="done-btn" id="db-ch6" onclick="toggleDone('ch6')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>2 種增收保費方法（Approaches）：Flat extra vs. Table rating</li>
+  <li>5 種決定額外死亡率水準的方法（Methods for extra mortality）</li>
+  <li>費率類別劃分（Rating classes）及死亡率考量</li>
+  <li>細分（Subdividing）次標準體業務的方法：依性別、吸菸、計畫</li>
+  <li>不承受（Not-taken）率、失效率、費用考量</li>
+  <li>次標準體總保費公式（Gross Premium formula）</li>
+  <li>Asset share 和利潤測試（Profit testing）概念</li>
+</ol>
+</div>
+
+<h2>一、次標準體的定義與基本方法</h2>
+
+<h3>何謂次標準體（Substandard）</h3>
+<p>當被保人的死亡率高於標準等級（standard class）時，需要額外費用和/或保費。次標準體保費可適用於任何壽險產品。</p>
+
+<h3>兩種增收保費方法（2 Approaches）</h3>
+<ol>
+  <li><span class="kw">Flat extra（固定額外保費）</span>：每 1,000 元保額加收固定金額
+    <ul>
+      <li>可以是暫時性的（例如 10 年）</li>
+      <li>適用於危險職業或危險活動（hazardous occupations/activities）</li>
+      <li>危險活動結束後可合理移除</li>
+    </ul>
+  </li>
+  <li><span class="kw">Table rating（費率表評級）</span>：標準死亡率的額外倍數（例如標準死亡率的 200%）
+    <ul>
+      <li><strong>最常見方法（most common）</strong></li>
+    </ul>
+  </li>
+</ol>
+
+<h2>二、決定額外死亡率水準的方法（5 Methods）</h2>
+<ol>
+  <li><span class="kw">Numerical Rating System（數值評分系統）</span>：針對各項核保因素（underwriting factors）給予加減分；各項總和決定需要的額外死亡率水準；批評：過於主觀、加減分無法準確評估風險</li>
+  <li><span class="kw">Advance in Age（年齡上調）</span>：以較高年齡承保保單</li>
+  <li><span class="kw">Lien Method（留置法）</span>：死亡給付從原始保額的一個分數開始，隨時間增加</li>
+  <li><span class="kw">Return of Premiums（退保費法）</span>：前 n 年死亡時，DB = 已繳保費總和</li>
+  <li><span class="kw">Charge Extra Premiums with Different Nonforfeiture Values（不同非沒收值的額外保費）</span>：僅適合擁有足夠自身經驗的公司</li>
+</ol>
+
+<h2>三、次標準體費率類別設定（Substandard Rating Classes）</h2>
+<ul>
+  <li>須先決定等級數量和每個等級的死亡率範圍；例如：
+    <div class="tscroll"><table class="cmp-table">
+      <tr><th>等級（Class）</th><th>死亡率範圍（Mortality Range）</th></tr>
+      <tr><td class="rl">1</td><td>145–185% of standard</td></tr>
+      <tr><td class="rl">2</td><td>190–250%</td></tr>
+      <tr><td class="rl">3</td><td>255–350%</td></tr>
+      <tr><td class="rl">4</td><td>355–500%</td></tr>
+      <tr><td class="rl">5</td><td>505–750%</td></tr>
+    </table></div>
+  </li>
+  <li>死亡率假設：以公司標準業務使用的表為基礎；反映各等級的分布；注意固定倍數在高齡時可能高估死亡率（constant multiples tend to overstate mortality at higher ages）</li>
+</ul>
+
+<h2>四、細分次標準體業務（Subdividing Substandard）</h2>
+<p>次標準體業務占總業務比例小 → 可信度（credibility）低 → 細分可能不合理。</p>
+
+<h3>細分方法（Methods for Subdividing）</h3>
+<ul>
+  <li><span class="kw">依性別（By Male/Female）</span>：女性費率可由男性費率透過回推（setback）導出；連生壽險的性別差異（3–5 年 setback）比個人壽險（6–8 年）小</li>
+  <li><span class="kw">依吸菸狀況（By Smoker/Non-Smoker）</span>：先制定吸菸者費率表，再為非吸菸者「豁免」1–2 個等級</li>
+  <li><span class="kw">依計畫（By Plan）</span>：次標準費率相對於標準費率越高 → 不承受率和失效率越高；陡峭的費率表雖然初始保費較低（更易銷售）但累積更高的早期失效風險</li>
+</ul>
+
+<h2>五、費用、不承受率與失效率（Expenses, Not-Taken Rates &amp; Lapse Rates）</h2>
+
+<h3>費用分攤方法</h3>
+<ol>
+  <li>分攤至所有業務（標準 + 次標準）</li>
+  <li>僅分攤至次標準業務</li>
+  <li><strong>最常見：</strong>上述組合</li>
+</ol>
+
+<h3>費用類型</h3>
+<ul>
+  <li><span class="kw">保費稅和佣金（Premium taxes &amp; commissions）</span>：依保費比例，直接分攤至次標準</li>
+  <li><span class="kw">取得費用（Acquisition expenses）</span>：次標準通常需要更多核保，費用隨承保年齡增加</li>
+  <li><span class="kw">維護費用（Maintenance expenses）</span>：通常與標準業務相同；但頻繁要求降低/移除評級的行政成本可能增加</li>
+</ul>
+
+<h3>不承受率與失效率（Not-Taken &amp; Lapse Rates）</h3>
+<ul>
+  <li><span class="kw">Not-taken rate（不承受率）</span>：申請者被核保通過但決定不購買（未繳第一期保費）</li>
+  <li>次標準的不承受率和失效率均高於標準體</li>
+  <li>次標準對標準保費比率越高 → 不承受率越高（反饋效應：將不承受成本直接分攤給次標準會進一步推高保費，再提高不承受率）</li>
+  <li>早期高失效率通常不利；後期高失效率可能有利</li>
+</ul>
+
+<h3>延伸繳費期間（Extended Term &amp; Reduced Paid-Up）的額外成本</h3>
+<ul>
+  <li><span class="kw">Extended term（延長定期，WL 非沒收選項）</span>：停繳保費但保留原 DB；逆向選擇最嚴重（健康差者偏好高 DB）→ 高度次標準體可能不提供此選項；若提供，使用更高死亡率假設（CSV 消耗更快）</li>
+  <li><span class="kw">Reduced paid-up（降額繳清）</span>：停繳保費，DB 降低至現有 CSV 可資助的單一保費對應金額</li>
+</ul>
+
+<h2>六、次標準體總保費公式（Substandard Gross Premium Formula）</h2>
+<p>次標準體的額外總保費（Extra Gross Premium）= 次標準體總保費（Rated GP）− 標準體總保費（Standard GP）</p>
+<div class="math-block">
+\[GP = \frac{NP \cdot (1 + \text{ClaimCost\%}) + \text{AcqExp}}{\ddot{a}_{x:n}} + \text{OtherMaintExp} + GP \times \text{\%PremExp}\]
+</div>
+<div class="fblock"><span class="hi">NP</span>          = 未來死亡給付的淨年保費 = 1000·Aₓ / äₓ:ₙ
+<span class="hi">ClaimCost%</span>  = 每張保單的理賠處理費用（% of claim）
+<span class="hi">AcqExp</span>      = 前期取得費用（轉換為水平保費）
+<span class="hi">OtherMaintExp</span> = 定期管理費用（固定金額）
+<span class="hi">%PremExp</span>    = 保費比例費用（保費稅、佣金等）
+</div>
+<p style="font-size:14px;color:#a0a4c0">計算 Rated GP 和 Standard GP 時，分別使用各自對應的死亡率和費用假設。</p>
+
+<h3>次標準體現金價值（Substandard Cash Values）</h3>
+<ul>
+  <li>次標準體 CSV 只比標準體略高（slightly higher），以避免保費不必要地提高</li>
+  <li>可透過降低次標準體保費來進一步降低次標準體 CSV</li>
+</ul>
+
+<h2>七、資產份額測試（Substandard Asset Share Tests）</h2>
+<ul>
+  <li><span class="kw">Asset Share（資產份額）</span>：保單在特定年度時累積的資產（本質上是利潤衡量：保費收入超過支出的累積部分）</li>
+  <li>用途：評估保單條款（如非沒收條款是否合理）；調整保費以達成盈餘/利潤目標（例如目標：第 20 保單年末 Asset Share ≥ CSV）</li>
+</ul>
+
+<div class="quiz">
+<div class="qlabel">📝 觀念練習 — Flat Extra vs. Table Rating</div>
+<div class="qtext">一位 40 歲男性申請 $500,000 WL 保險，被評為次標準體。以下兩種方法各有什麼適用情境？</div>
+<div class="slabel">解說</div>
+<p style="font-size:14px;color:#a0a4c0">
+<strong>Flat extra 適用情境：</strong>風險因素為暫時性或特定職業/活動（如跳傘運動員；危險職業），預期風險期間已知，風險與年齡相關性低。<br><br>
+<strong>Table rating 適用情境：</strong>風險因素為健康狀況（如糖尿病、心臟病），與年齡死亡率的相對關係維持穩定，是最常用的方法。
+</p>
+</div>
+
+</div>
+</article>
+
+<!-- ═══════════════════════════════════════════════
+     CH7  加速給付附約
+═══════════════════════════════════════════════ -->
+<article class="ch-block" id="ch7">
+<div class="ch-meta">Life Insurance Acceleration Riders · Section A.1</div>
+<div class="ch-title">加速給付附約</div>
+<div class="ch-subtitle">Life Insurance Acceleration Riders — Types, Risk Controls &amp; Reinsurance</div>
+<button class="done-btn" id="db-ch7" onclick="toggleDone('ch7')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>三種觸發事件（Triggers）：Terminal / Chronic / Critical Illness 的定義差異</li>
+  <li>慢性疾病附約三種設計（3 Chronic Illness Benefit Designs）</li>
+  <li>慢性疾病附約風險控制措施（Risk control measures）：共 10 項</li>
+  <li>再保險參與（Reinsurance participation）：末期疾病 vs. 慢性疾病；永久型 vs. 定期型保單差異</li>
+</ol>
+</div>
+
+<h2>一、加速給付附約概覽</h2>
+
+<h3>核心概念</h3>
+<ul>
+  <li><span class="kw">Acceleration（加速）</span>：保險公司在<strong>死亡前</strong>提前支付部分保單面額（face amount），又稱 <span class="en">living benefits（生前給付）</span></li>
+  <li>保戶必須符合特定<span class="en">trigger（觸發條件）</span>才能申請加速給付</li>
+  <li>這些附約與 LTCI（長照保險）附約類似，均為生前給付；但本章的加速附約主要基於慢性疾病觸發，且通常以一次性給付（lump sum）方式支付</li>
+</ul>
+
+<h3>三種觸發事件（Types of Acceleration Riders）</h3>
+<div class="tscroll"><table class="cmp-table">
+  <tr><th>附約（Rider）</th><th>觸發條件（Trigger）</th></tr>
+  <tr>
+    <td class="rl">Terminal Illness（末期疾病）</td>
+    <td>平均餘命少於 12 個月或 24 個月（life expectancy &lt; 12 or 24 months）</td>
+  </tr>
+  <tr>
+    <td class="rl">Chronic Illness（慢性疾病）</td>
+    <td>在無協助下無法執行 2 項以上 ADL（Activities of Daily Living）<br>如：沐浴（bathing）、進食（eating）等</td>
+  </tr>
+  <tr>
+    <td class="rl">Critical Illness（重大疾病）</td>
+    <td>符合重大疾病定義（如心臟病發作 heart attack、中風 stroke、癌症 cancer）</td>
+  </tr>
+</table></div>
+<p style="font-size:13.5px;color:#7a7e96;margin-top:-8px">歷史上保險公司提供末期疾病附約；現在部分保險公司也提供慢性和重大疾病附約</p>
+
+<h2>二、慢性疾病附約三種設計（Chronic Illness Benefit Designs）</h2>
+<p>慢性疾病附約的設計目標：使給付符合稅務優惠資格（favorable tax treatment）。</p>
+<ol>
+  <li><span class="kw">Actuarial Discounting（精算折現法）</span>：
+    <ul>
+      <li>加速給付 = 加速部分保額的精算現值（actuarial PV of accelerated portion of face）</li>
+      <li>假設和方法論是「設計良好的慢性疾病附約的關鍵」</li>
+    </ul>
+  </li>
+  <li><span class="kw">Lien Method（留置法）</span>：
+    <ul>
+      <li>保險公司支付給保戶的金額成為一項「留置額（Lien）」</li>
+      <li>保戶繼續就全額保額繳費</li>
+      <li>DB = 原始面額 − 留置額</li>
+    </ul>
+  </li>
+  <li><span class="kw">Chronic Illness Rider（慢性疾病附約方式）</span>：
+    <ul>
+      <li>保戶為附約支付額外保費</li>
+      <li>設計目標：使給付對保戶符合免稅資格（tax-free）</li>
+    </ul>
+  </li>
+</ol>
+
+<h2>三、慢性疾病附約風險控制措施（Risk Control Measures）</h2>
+<p>共 10 項，全部需要掌握：</p>
+<ol>
+  <li><span class="kw">補充核保（Supplemental underwriting）</span>：篩選 ADL 喪失風險和超額保險（over-insurance）</li>
+  <li><span class="kw">限制承保年齡（Limit issue ages）</span></li>
+  <li><span class="kw">採用精算折現法或留置法（Use actuarial discounting or lien method）</span></li>
+  <li><span class="kw">限制加速金額（Cap acceleration amounts）</span>：每年上限（annual cap）及終身上限（lifetime cap）</li>
+  <li><span class="kw">ADL 需由有執照醫療人員認定（Require licensed health care professional certification）</span></li>
+  <li><span class="kw">排除暫時性 ADL 喪失（Exclude temporary ADL loss）</span></li>
+  <li><span class="kw">觸發條件中明確列出排除事項（Clear exclusions in trigger definition）</span></li>
+  <li><span class="kw">限制最高次標準體評級（Limit maximum substandard rating）</span></li>
+  <li><span class="kw">不可抗辯期跟隨主約（Contestability period follows base policy）</span></li>
+  <li><span class="kw">最高給付限制（Cap on maximum benefit）</span>：不得超過主約 DB 的 100%（即不能多於原始保額）</li>
+</ol>
+
+<h2>四、再保險參與（Reinsurance Participation）</h2>
+
+<h3>末期疾病附約（Terminal Illness Rider）</h3>
+<ul>
+  <li>市場標準做法</li>
+  <li>附約再保比例 = 主約再保比例（proportional to base policy participation）</li>
+</ul>
+
+<h3>慢性疾病附約（Chronic Illness Rider）</h3>
+<div class="tscroll"><table class="cmp-table">
+  <tr><th></th><th>永久型保單（Permanent Products）</th><th>定期型保單（Term Products）</th></tr>
+  <tr>
+    <td class="rl">特性</td>
+    <td>最終理賠機率高；若觸發慢性疾病，失效率 ≈ 0%；需考慮確定給付現值（APV of accelerated face）</td>
+    <td>不確定性與風險遠大於永久型；最終死亡理賠較少（保障期間可能短於預期壽命）；定期險轉換（term conversion）帶來額外風險</td>
+  </tr>
+  <tr>
+    <td class="rl">再保方式</td>
+    <td>可全額參與；或限制一次性死亡/失效時給付；或完全不參與</td>
+    <td>風險更高；需更審慎評估；市場壓力可能使此類附約從永久型蔓延至定期型</td>
+  </tr>
+</table></div>
+
+<h3>其他再保問題（Other Reinsurance Questions）</h3>
+<ul>
+  <li>再保公司如何收費（how will the reinsurer be compensated）？</li>
+  <li>若再保公司沒有 living benefits 的自身經驗，如何定價風險？</li>
+  <li>如何在 YRT 條約（yearly renewable term treaties）中處理保單失效？</li>
+  <li>若在投保後多年才購買附約，是否要求額外核保？</li>
+</ul>
+
+</div>
+</article>
+
+
+<article class="ch-block" id="a2ch1">
+<div class="ch-meta">ILA101-101 Ch. 1 · Section A.2</div>
+<div class="ch-title">固定遞延年金</div>
+<div class="ch-subtitle">Fixed Deferred Annuities — Characteristics &amp; Pricing</div>
+<button class="done-btn" id="db-a2ch1" onclick="toggleDone('a2ch1')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>遞延年金兩種類型：<span class="en">SPDA</span>（躉繳）vs. <span class="en">FPDA</span>（彈性保費）；四種設計：CD、MVA、Two-Tiered、Personal GICs</li>
+  <li>MVA 公式與計算：\(MVA_t = \left(\frac{1+a}{1+b+c}\right)^{n-t}\)，各變數意義</li>
+  <li>七種產品特色：Bailout、Penalty-free withdrawal、ROP、Death benefit、Waiver of SC、Guaranteed rates、Bonus</li>
+  <li>Bailout 成本公式：Option Cost = Avg Lost SC × Excess Lapse Rate × P(Trigger)</li>
+  <li>免費提領計算（Penalty-free withdrawal）</li>
+  <li>利率風險（C-3 Risk）與計息策略（三種）</li>
+  <li>主要定價假設：提領率（最重要）、死亡率、佣金、費用</li>
+</ol>
+</div>
+
+<h2>一、固定遞延年金特性（Characteristics of Fixed Deferred Annuities）</h2>
+
+<h3>基本定義</h3>
+<p>遞延年金（<span class="en">deferred annuity</span>）是以稅賦優惠方式累積退休金的儲蓄工具。雖然原始設計目的是最終年金化，但今日大多數遞延年金作為儲蓄產品使用，很少真正年金化。</p>
+<ul>
+  <li><span class="kw">SPDA（Single Premium Deferred Annuity，躉繳遞延年金）</span>：保戶一次繳入大額保費；最常見</li>
+  <li><span class="kw">FPDA（Flexible Premium Deferred Annuity，彈性保費遞延年金）</span>：允許持續存入保費</li>
+  <li>帳戶值以計息利率增長，保險公司可扣除定期費用；機制與 UL 帳戶值相同，但無死亡費用（COI）</li>
+</ul>
+
+<h3>SPDA 與 FPDA 特色</h3>
+<ul>
+  <li>可為合格帳戶（qualified）或非合格帳戶（non-qualified）</li>
+  <li>SPDA 可能有最低保費要求（如 $5,000）</li>
+  <li>費用：前端費用（<span class="en">FEL</span>）、定期費用、解約費用（<span class="en">SC, Surrender Charges</span>）</li>
+  <li>FPDA 的解約費用可能以已繳保費為基礎</li>
+  <li>利率保證期：SPDA 通常 1–7 年；FPDA 有較低的最低保證利率</li>
+</ul>
+
+<h2>二、四種遞延年金設計類型</h2>
+
+<ol>
+  <li><span class="kw">CD Annuities（類定存年金）</span>：解約費用運作類似銀行定存；利率保證期結束後 30–60 天可免費提領（常導致高失效率）；佣金較低；續期佣金依對通路的控制力而定，計算基礎為每個保證期初的帳戶值</li>
+  <li><span class="kw">MVA Annuities（市值調整年金）</span>：解約時帳戶值乘以 MVA 係數，反映資產市值變化；保護公司免受利率風險，尤其在利率上升時；MVA 年金利率風險較低，因此可提供較高計息率</li>
+  <li><span class="kw">Two-Tiered Annuities（雙層年金）</span>：同時計算年金化帳戶值和解約帳戶值；年金化帳戶計息率較高，隨時間增長較快；缺點：常被批評保戶難以理解</li>
+  <li><span class="kw">Non-Surrenderable Annuities（不可解約年金，又稱 Personal GICs）</span>：在保證期結束日之間不允許解約；因流動性低，難以向個人行銷</li>
+</ol>
+
+<h2>三、MVA 公式與計算</h2>
+
+<div class="math-block">
+\[MVA_t = \left(\frac{1+a}{1+b+c}\right)^{n-t}\]
+</div>
+<div class="fblock"><span class="hi">n</span> = 當前保證期間的年數（length of current guarantee period）
+<span class="hi">t</span> = 自當前保證期間開始以來的年數（years since start of guarantee period）
+<span class="hi">a</span> = 當前保證計息率（current guaranteed rate）
+<span class="hi">b</span> = 類似產品目前提供的利率（rate currently offered on similar products）
+<span class="hi">c</span> = 常數因子（constant factor, 0.000–0.005）</div>
+
+<div class="callout">
+💡 <strong>直覺記憶：</strong><br>
+利率 b 上升 → 分母增大 → MVA &lt; 1 → 解約值縮水（保護公司：新客戶可得更高利率，舊客戶提前走要打折）<br>
+利率 b 下降 → 分母縮小 → MVA &gt; 1 → 解約值增加（舊保單反而值錢）<br>
+若 c &gt; 0，利率需下降超過 c 才能讓保戶獲得帳戶值增加的好處（創造一個利率下降緩衝）
+</div>
+
+<div class="quiz">
+<div class="qlabel">📝 計算練習 — MVA</div>
+<div class="qtext">某 MVA 年金 1 年前以 $1,000 發行，保證 3 年期 4% 利率，以 5% 年票息的 3 年債券為後盾。現在債券年票息為 6%，競爭產品利率 = 當前債券利率 − 100 bps；c = 0.005。不計解約費用。計算 (i) 無 MVA 時公司的財務影響；(ii) 有 MVA 時的財務影響。</div>
+<div class="slabel">解答</div>
+<div class="math-block">
+\[AV = 1{,}000 \times 1.04 = 1{,}040\]
+\[\text{Bond MV} = \frac{50}{1.06} + \frac{1{,}050}{1.06^2} = 981.17\]
+\[\text{(i) No MVA: Loss} = 1{,}040 - 981.17 = \mathbf{58.83}\]
+\[a=4\%,\; b=5\%,\; c=0.005,\; n=3,\; t=1\]
+\[MVA = \left(\frac{1.04}{1.055}\right)^{2} = 0.9718\]
+\[\text{(ii) With MVA: Adj. SV} = 1{,}040 \times 0.9718 = 1{,}010.67\]
+\[\text{Loss} = 1{,}010.67 - 981.17 = \mathbf{29.50}\]
+</div>
+</div>
+
+<h2>四、七種重要產品特色</h2>
+
+<h3>1. Bailout Provisions（保底解約條款）</h3>
+<ul>
+  <li>若計息率低於<span class="kw">保底利率（Bailout Rate）</span>，則免除解約費用</li>
+  <li>保底利率可設定為：初始計息率、前一期保證利率、或某公債利率</li>
+  <li>醫療保底（Medical bailouts）：年金受益人入住護理之家或長期看護機構時免除解約費用；在 50 歲以上市場很流行</li>
+  <li>保底條款會增加準備金和資本要求 → 盈餘壓力（<span class="en">surplus strain</span>）</li>
+  <li>大多數公司假設支付足夠高的計息率以不觸發保底條款（維持高計息比承擔高失效成本划算）</li>
+</ul>
+<div class="math-block">
+\[\text{Option Cost} = \text{Avg Lost SC} \times \text{Excess Lapse Rate} \times P(\text{Trigger})\]
+\[\text{Total Bailout Cost} = \text{Option Cost} + \text{Additional Surplus}\]
+</div>
+
+<div class="quiz">
+<div class="qlabel">📝 計算練習 — Bailout 成本</div>
+<div class="qtext">已知：平均損失解約費 = 4%；正常失效率 = 5%；若保底觸發，30% 保戶會失效；觸發機率 = 5%。計算每年選擇權成本（以帳戶值%計）。</div>
+<div class="slabel">解答</div>
+<div class="math-block">
+\[\text{Option Cost} = 4\% \times (30\% - 5\%) \times 5\% = \mathbf{5 \text{ bps}}\]
+</div>
+<p style="font-size:13.5px;color:#a0a4c0">這 5 bps 是利差（interest spread）的一個組成部分，需納入定價。</p>
+</div>
+
+<h3>2. Penalty-Free Withdrawal（免費提領條款）</h3>
+<ul>
+  <li>允許一定比例的帳戶值免除解約費用提領（如 10%）</li>
+  <li>有些設計以已繳保費為基礎；有些設計將未使用額度滾入下年度（累積）</li>
+  <li>通常要求最低提領金額（如 $25）及最低帳戶餘額（如 $500）</li>
+</ul>
+<div class="math-block">
+\[\text{Excess over free amount} \Rightarrow \text{SC applies}\]
+</div>
+
+<h3>3. Return of Principal Guarantee（本金返還保證）</h3>
+<ul>
+  <li>保證解約值 ≥ 已繳保費（扣除前次提領）</li>
+  <li>缺點：增加法定準備金；業務員可能利用無佣金扣回（<span class="en">chargeback</span>）來「炒單」（churn）——鼓勵失效再銷售以賺取佣金</li>
+</ul>
+
+<h3>4. 死亡給付（Death Benefit）</h3>
+<ul>
+  <li>通常等於帳戶值，也可能等於解約值</li>
+</ul>
+
+<h3>5. 年金化時豁免解約費用（Waiver of SC on Annuitization）</h3>
+<ul>
+  <li>增加準備金；通常要求最低年金化期間（至少 10 年）</li>
+</ul>
+
+<h3>6. 保證結算利率（Guaranteed Settlement Rates）</h3>
+<ul>
+  <li>通常很保守（以相對低利率計算年金給付）；保證越高 → 越可能增加準備金；死亡率改善使這些保證對保險公司更昂貴</li>
+</ul>
+
+<h3>7. 帳戶值加成獎勵（Account Value Enhancement Bonuses）</h3>
+<ul>
+  <li>年金化獎勵（最常見）：年金化時帳戶值增加 2–10%</li>
+  <li>保單繼續率獎勵：如第 10 保單年末計入獎勵利息</li>
+  <li>高帳戶值獎勵：如帳戶值超過 $50K 者多計 15–25 bps</li>
+  <li>部分獎勵目的在吸引新資金（如第一年多計 100 bps）</li>
+</ul>
+
+<h2>五、定價考量：利率風險（Interest Rate Risk / C-3 Risk）</h2>
+
+<p><span class="kw">C-3 風險</span>：利率上升觸發高提領、同時壓低資產市值，公司可能需賠本出售資產支應失效。</p>
+<div class="math-block">
+\[\text{Interest Spread} = \text{Net Investment Earned Rate} - \text{Credited Rate}\]
+\[\text{Target Spread} = \text{Expenses} + \text{Feature Costs} + \text{Risk Charge} + \text{Profit}\]
+</div>
+
+<h3>三種計息策略（Crediting Strategies）</h3>
+<ol>
+  <li><span class="kw">忽略競爭（Ignore Competition）</span>：計息率 = 淨投資收益率 − 目標利差；利率上升時，投資組合法利率落後新資金利率 → 高失效（C-3 風險）；不建議忽略競爭</li>
+  <li><span class="kw">以競爭者利率為上下限（Competitor Rate Cap/Floor）</span>：最高計息率 = (1+x)% × 競爭者利率；最低計息率 = (1−y)% × 競爭者利率</li>
+  <li><span class="kw">加權平均（Weighted Average）</span>：計息率 = z% × (淨收益率 − 目標利差) + (1−z)% × 競爭者利率</li>
+</ol>
+<div class="callout">💡 <strong>動態失效率（Dynamic Lapse Rates）</strong>：隨著競爭者利率上升而增加假設失效率；核心邏輯：競爭者利率越高，保戶越可能失效轉去高利率產品。</div>
+
+<h2>六、定價假設（Key Pricing Assumptions）</h2>
+<ol>
+  <li><span class="kw">提領率（Withdrawal Rate，最重要）</span>：影響因素：解約費用、計息率、銷售通路、保證條款、保戶特性</li>
+  <li>部分提領條款（Partial withdrawal provisions）</li>
+  <li>死亡率（Mortality，相對次要）</li>
+  <li>佣金（Commissions）：SPDA 約 3–10%；FPDA 第一年約 7%，續期約 3%</li>
+  <li>費用（Expenses，低於壽險）</li>
+</ol>
+
+</div>
+</article>
+
+<article class="ch-block" id="a2ch2">
+<div class="ch-meta">ILA101-101 Ch. 2 · Section A.2</div>
+<div class="ch-title">變額年金</div>
+<div class="ch-subtitle">Variable Annuities — GMDBs, GLBs, Unit Values &amp; Pricing</div>
+<button class="done-btn" id="db-a2ch2" onclick="toggleDone('a2ch2')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>VA 特性：組合合約、保戶承擔 C-3 風險、帳戶值無保證</li>
+  <li>GMDB 兩種設計：Step-up（棘輪式）與 Roll-up（滾動式）公式</li>
+  <li>GLBs 四種：GMIB、GMAB、GMWB、GLWB（最流行）</li>
+  <li>VA 費用結構（三層）</li>
+  <li>單位基金值計算：單位購買與贖回、NIF 兩種計算方法</li>
+  <li>年金化公式：\(\text{Pmt}_0\) 與 \(\text{Pmt}_t\) 隨 NIF 變動</li>
+  <li>三種降低給付不穩定性的方法</li>
+  <li>定價考量：動態失效假設、隨機定價（stochastic pricing）</li>
+</ol>
+</div>
+
+<h2>一、VA 基本特性</h2>
+<ul>
+  <li>幾乎全部為 SPDA 形式</li>
+  <li>保費投入<span class="en">separate account（分離帳戶）</span>：股票、債券、平衡型基金、貨幣市場等；分離帳戶比一般帳戶有更少的投資限制</li>
+  <li>保戶承擔所有投資和利率風險（帳戶值直接隨分離帳戶績效波動）→ 基本 VA 對保險公司消除 C-3 風險</li>
+  <li>常見「<span class="kw">組合合約（combination contract）</span>」：同時提供一般帳戶固定選項和分離帳戶變額選項；保戶可在兩者之間轉換（依保險公司限制）</li>
+  <li>基本 VA 死亡給付 = 帳戶值（豁免解約費用）</li>
+</ul>
+
+<h2>二、保證最低死亡給付（GMDB, Guaranteed Minimum Death Benefit）</h2>
+<p>死亡時給付 max(帳戶值, GMDB)；需額外附約費用。</p>
+<ul>
+  <li><span class="kw">Step-up（棘輪式）</span>：GMDB = 過去任何週年日最高帳戶值 − 此後累積提領額</li>
+  <li><span class="kw">Roll-up（滾動式）</span>：
+    <div class="math-block">\[GMDB_t = GMDB_{t-1} \times (1+r) + P_t - W_t \quad (r = 4\%\text{--}6\%)\]</div>
+    通常設上限（如保費的 200%），並在 75 或 80 歲停止滾動
+  </li>
+  <li>也可設計為 max(Step-up, Roll-up)，或以合約獲利的某比例（少見）</li>
+  <li>GMDB 早期被保險公司低估定價成本</li>
+</ul>
+
+<h2>三、保證生存給付（GLBs, Guaranteed Living Benefits）</h2>
+<p>合約持有人必須<strong>存活</strong>才能行使；GMDB 成功後推出以進一步刺激銷售。</p>
+<ol>
+  <li><span class="kw">GMIB（Guaranteed Minimum Income Benefit，最低收入保證）</span>：行使時，將保證金額轉換為終身固定月收入；保證通常基於滾動設計；風險緩解：長等待期（如 10 年）和保證年金化利率；缺點：保戶不喜歡年金化後失去帳戶值，銷售不成功</li>
+  <li><span class="kw">GMAB（Guaranteed Minimum Accumulation Benefit，最低累積保證）</span>：無需年金化或解約即可行使；在任何可行使日，若 GMAB &gt; 帳戶值，帳戶值自動棘輪上升至 GMAB 水準</li>
+  <li><span class="kw">GMWB（Guaranteed Minimum Withdrawal Benefit，最低提領保證）</span>：GMIB 問題的解決方案；提領減少帳戶值，但帳戶值仍可解約；即使帳戶值降為零，提領仍有保證（但非終身）</li>
+  <li><span class="kw">GLWB（GMWB for Life，終身最低提領保證，最流行）</span>：保證提領至死亡；通常為第一次提領時帳戶值的 4–6%；GMWB 的提領基礎最終會耗盡，但 GLWB 保証終身給付</li>
+</ol>
+
+<h2>四、VA 費用結構（Product Charges）</h2>
+<ul>
+  <li>與固定年金相同：前端費用（FEL）、解約費用（SC，比 FEL 更常見）、定期固定費用</li>
+  <li>額外：資產比例費用（% of assets），用於涵蓋：
+    <ul>
+      <li>死亡率與費用保證（<span class="en">M&amp;E charges</span>）</li>
+      <li>行政費用</li>
+      <li>利潤</li>
+      <li>GMDB 或 GLB 附約費用</li>
+    </ul>
+  </li>
+  <li>範例費用結構：10% 初始解約費（第 10 年歸零）、每年 $15 固定費用、每年 100 bps 資產費用</li>
+</ul>
+
+<h2>五、單位值計算（VA Product Mechanics）</h2>
+
+<div class="math-block">
+\[\text{Fund Value} = \text{Units in Fund} \times \text{Unit Value}\]
+\[\text{Units}_t = \text{Units}_{t-1} + \text{Units Purchased}_t - \text{Units Withdrawn}_t\]
+\[\text{Unit Value}_t = \text{Unit Value}_{t-1} \times NIF_t\]
+</div>
+
+<h3>交易處理</h3>
+<ul>
+  <li><strong>購買單位</strong>：前端費用先從保費扣除，再以剩餘金額除以單位值
+    <div class="math-block">\[\text{Units Purchased} = \frac{\text{Premium} \times (1 - \text{FEL\%})}{\text{Unit Value}}\]</div>
+  </li>
+  <li><strong>贖回單位</strong>：先將期望提領金額加計解約費用（gross up），再除以單位值
+    <div class="math-block">\[\text{Units Withdrawn} = \frac{\text{Desired Cash} / (1 - \text{SC\%})}{\text{Unit Value}}\]</div>
+  </li>
+</ul>
+
+<h3>NIF（Net Investment Factor，淨投資因子）兩種計算方法</h3>
+<ol>
+  <li><span class="kw">Open-Ended Separate Account（開放式分離帳戶）</span>：
+    <div class="math-block">\[NIF_t = 1 + \frac{InvInc_t + UCG_t + RCG_{t-1} - Exp_t}{AV_{t-1} + Annuity\ Res_{t-1}} - Daily\ Asset\ Charge\]</div>
+    <div class="fblock"><span class="hi">UCG</span> = 未實現資本利得（unrealized capital gains/losses）
+<span class="hi">RCG</span>ₜ₋₁ = 前一日已實現資本利得（realized capital gains/losses from previous day）</div>
+  </li>
+  <li><span class="kw">Unit Investment Trusts（單位投資信託）</span>：
+    <div class="math-block">\[NIF_t = 1 + \frac{Ending\ Fund\ Value - Beginning\ Fund\ Value}{AV_{t-1} + Annuity\ Res_{t-1}}\]</div>
+  </li>
+</ol>
+
+<div class="quiz">
+<div class="qlabel">📝 計算練習 — 單位購買與贖回</div>
+<div class="qtext">保戶繳入 $150 保費，5% FEL，當前單位值 $10。之後保戶希望提領現金 $100，當前解約費 8%。計算購買單位數和贖回單位數。</div>
+<div class="slabel">解答</div>
+<div class="math-block">
+\[\text{Units Purchased} = \frac{150 \times (1-5\%)}{10} = \frac{142.50}{10} = \mathbf{14.25}\]
+\[\text{Units Withdrawn} = \frac{100 / (1-8\%)}{10} = \frac{108.70}{10} = \mathbf{10.87}\]
+</div>
+</div>
+
+<h2>六、VA 年金化（Annuitization）</h2>
+<div class="math-block">
+\[\text{Pmt}_0 = \frac{\text{Account Value}}{12 \cdot \ddot{a}_x^{(12)}}\]
+\[\text{Pmt}_t = \text{Pmt}_{t-1} \times \frac{NIF_t}{(1+AIR)^{1/12}}\]
+</div>
+<div class="fblock"><span class="hi">AIR</span> = Assumed Investment Return（假設投資報酬率）
+若 NIF &gt; (1+AIR)^(1/12) → 下期給付增加
+若 NIF &lt; (1+AIR)^(1/12) → 下期給付減少</div>
+
+<h3>三種降低給付不穩定性的方法</h3>
+<ol>
+  <li>每年僅允許給付變動一次：將每年給付轉換為 1 年期固定年金</li>
+  <li>設定給付下限為初始給付的 75%</li>
+  <li>設定給付下限為 100%，追蹤差額：不足部分由保險公司墊付（視為無息借款）；實際給付高於下限時先償還借款；死亡時未還借款通常豁免</li>
+</ol>
+
+<h2>七、定價考量（Pricing Considerations）</h2>
+<ul>
+  <li><span class="kw">失效率</span>：資產費用收入高度依賴帳戶值水準（由失效率驅動）；有保證時需使用<span class="en">dynamic lapse assumptions（動態失效假設）</span>，因為保證的價內程度（ITM level）會影響失效行為</li>
+  <li><span class="kw">保費保單繼續率（Premium Persistency）</span>：難以估計；損益兩平年（BEY）可能很高</li>
+  <li><span class="kw">平均保費規模</span>：保費越大 → 費用相對固定 → 利潤越高</li>
+  <li><span class="kw">費用</span>：維護費用高於固定年金；佣金低於壽險；取得成本透過資產費用回收，受股市風險影響</li>
+  <li><span class="kw">GMDB 和 GLBs 定價</span>：需要<span class="en">隨機定價（stochastic pricing）</span>；假設包含：
+    <ul>
+      <li>未來基金配置（future fund allocation）</li>
+      <li>總報酬的均值與方差</li>
+      <li>死亡率（GMDB 使用）</li>
+      <li>GLB 行使率（GLB utilization rates）</li>
+    </ul></li>
+</ul>
+
+</div>
+</article>
+
+<article class="ch-block" id="a2ch3">
+<div class="ch-meta">ILA101-101 Ch. 3 · Section A.2</div>
+<div class="ch-title">固定指數年金</div>
+<div class="ch-subtitle">Fixed Indexed Annuities (FIA) — Design, Hedging &amp; Reserving</div>
+<button class="done-btn" id="db-a2ch3" onclick="toggleDone('a2ch3')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>FIA 特性：指數計息 + 底板保護；IAV vs. GMAV</li>
+  <li>指數成長計算方法：PTP（區間始末）與 Averaging（平均法）</li>
+  <li>三種指數計息調整：Cap（上限）、Participation Rate（參與率）、Fee（費用）</li>
+  <li>創新設計：Binary、High Water、Index Choice、GMAV/GMWB</li>
+  <li>作為利差產品的融資邏輯：Option Budget 公式</li>
+  <li>靜態避險（Static Hedging）：買權價差（call spread）；融資比率</li>
+  <li>GMAV 融資；FIA 準備金（VM-22）</li>
+</ol>
+</div>
+
+<h2>一、FIA 基本特性</h2>
+<ul>
+  <li>以指數績效提供計息機會，但<strong>底板（floor）設為零</strong>：指數下跌時不計負利率</li>
+  <li>曾稱為 EIA（Equity Indexed Annuity，股票指數年金）</li>
+  <li>FIA 是固定遞延年金（不是變額年金）；資產在一般帳戶（GA），不在分離帳戶；有最低非沒收值（SNL）</li>
+  <li>同 IUL 產品，FIA 以一般帳戶資產（AA 到 BBB 評級債券）支撐，並購買買權（call options）以對沖指數計息成本</li>
+  <li>有兩個概念：<span class="kw">IAV（Indexed Account Value，指數帳戶值）</span>和 <span class="kw">GMAV（Guaranteed Minimum Account Value，保證最低帳戶值）</span>；GMAV 通常等於 SNL</li>
+</ul>
+
+<h2>二、指數成長計算方法</h2>
+
+<ol>
+  <li><span class="kw">Point-to-Point（PTP，區間始末）</span>：
+    <div class="math-block">\[\text{Index Growth}_t = \frac{\text{Index at End of Segment}}{\text{Index at Beginning of Segment}} - 1\]</div>
+  </li>
+  <li><span class="kw">Averaging（平均法）</span>：
+    <div class="math-block">\[\text{Index Growth}_t = \frac{\frac{1}{12}\sum_{m=1}^{12}\text{Index}_m}{\text{BOY Index}} - 1\]</div>
+    平均法通常產生較低的指數成長（因為平滑掉了高峰）
+  </li>
+</ol>
+
+<h2>三、三種指數計息調整</h2>
+<div class="math-block">
+\[IC_{cap} = \max\!\big[0,\; \min(Index\ Growth,\; Cap)\big]\]
+\[IC_{pr} = \max\!\big[0,\; PR \times Index\ Growth\big]\]
+\[IC_{fee} = \max\!\big[0,\; Index\ Growth - Fee\%\big]\]
+\[IAV_t = IAV_{t-1} \times (1 + IC_t)\]
+</div>
+<div class="callout">💡 三種設計比較：指數報酬<strong>適中</strong>時 Cap 設計有利；指數報酬<strong>高</strong>時 PR 或 Fee 設計有利（因為 Cap 會截斷高報酬）。</div>
+
+<div class="quiz">
+<div class="qlabel">📝 計算練習 — PTP 三種設計</div>
+<div class="qtext">三年期 FIA，每年重設。指數值：t=0→100，t=1→103，t=2→95，t=3→103。計算三種設計（① 4% Cap；② 60% PR；③ 1.5% Fee）的年度計息率與最終 IAV。</div>
+<div class="slabel">解答</div>
+<div class="math-block">
+\[y_1 = \tfrac{103}{100}-1 = 3\%,\quad y_2 = \tfrac{95}{103}-1 = -7.77\% \xrightarrow{\text{floor=0}} 0\%,\quad y_3 = \tfrac{103}{95}-1 = 8.42\%\]
+</div>
+<div class="tscroll"><table class="cmp-table">
+  <tr><th>設計</th><th>t=1</th><th>t=2</th><th>t=3</th><th>最終 IAV</th></tr>
+  <tr><td class="rl">Cap 4%</td><td>min(3%,4%)=3%</td><td>0%</td><td>min(8.42%,4%)=4%</td><td>1.03×1.00×1.04=<strong>107.1%</strong></td></tr>
+  <tr><td class="rl">PR 60%</td><td>60%×3%=1.8%</td><td>0%</td><td>60%×8.42%=5.05%</td><td>1.018×1.00×1.0505=<strong>106.9%</strong></td></tr>
+  <tr><td class="rl">Fee 1.5%</td><td>3%−1.5%=1.5%</td><td>0%</td><td>8.42%−1.5%=6.92%</td><td>1.015×1.00×1.0692=<strong>108.5%</strong></td></tr>
+</table></div>
+</div>
+
+<h2>四、創新設計（Innovative / Exotic Designs）</h2>
+<ul>
+  <li><span class="kw">Binary Returns（二元）</span>：指數上漲時計息固定比例（如 5%），否則 0%</li>
+  <li><span class="kw">High Water（高水位）</span>：Index Growth = 期間最高指數 / 初始指數 − 1</li>
+  <li><span class="kw">Index Choice（指數選擇）</span>：保戶可選擇指數（最常見）；可設固定利率帳戶選項；週年日可轉換</li>
+  <li><span class="kw">Purchase Inducements（銷售誘因）</span>：前端獎勵或第一年較高參與率</li>
+  <li><span class="kw">GMAV（保證最低帳戶值，高於 SNL）</span>：若 GMAV 設定高於法定最低值，公司需融資超出部分</li>
+  <li><span class="kw">GMWBs</span>：比 VA GMWBs 便宜，因為 FIA 的指數計息有底板保護；大多數保險公司不對沖 FIA 的 GMWB</li>
+</ul>
+
+<h2>五、FIA 定價與避險（Pricing &amp; Hedging）</h2>
+
+<h3>作為利差產品（Spread Product）</h3>
+<div class="math-block">
+\[\text{Spread} = \text{Net Earned Rate} - \text{Pricing Spread} - \text{Hedging Budget (Option Budget)}\]
+\[\text{Option Budget} = \text{Earned Rate} - \text{Credit Default Charge} - \text{Expenses} - \text{Profit Margin}\]
+</div>
+<p>Cap、PR 等調整以確保選擇權成本 ≤ 避險預算。影響獲利的風險因素：</p>
+<ul>
+  <li>再投資利率下降 → 淨收益率降低</li>
+  <li>高指數計息 → IAV 增加 → 未來選擇權名義金額更高</li>
+  <li>未來選擇權成本上升（股市波動率上升、無風險利率上升）</li>
+</ul>
+
+<h3>靜態避險（Static Hedging）</h3>
+<ul>
+  <li>使用 OTC 買權價差選擇權（<span class="en">call spread options</span>）：買入 ATM Call（行使價 = 當前指數）、賣出 OTM Call（行使價 = Cap）</li>
+</ul>
+<div class="math-block">
+\[\text{Call Spread Cost} = C(\text{Strike}=S_0) - C(\text{Strike}=\text{Cap})\]
+\[\text{Payoff}_t = \max(0, \text{Index}_t - K_L) - \max(0, \text{Index}_t - K_U)\]
+</div>
+<ul>
+  <li><span class="kw">融資比率（Funding Ratio）</span>：以選擇權對沖的 IAV 比例，通常 &lt; 100%</li>
+  <li>實際失效率 &gt; 預期 → 保險公司獲利；實際失效率 &lt; 預期 → 保險公司損失利潤</li>
+</ul>
+
+<h3>GMAV 融資</h3>
+<ul>
+  <li>GMAV 設定高於 SNL 時，公司需融資超出部分；通常以 zero cost collar（無成本領口策略）對沖</li>
+</ul>
+
+<h3>FIA 準備金</h3>
+<ul>
+  <li>準備金必須涵蓋 IAV 和 GMAV 中的<strong>較大值</strong></li>
+  <li><span class="kw">VM-22</span> 是主要監管框架（適用於遞延年金）</li>
+</ul>
+
+</div>
+</article>
+
+<article class="ch-block" id="a2ch4">
+<div class="ch-meta">ILA101-101 Ch. 4 · Section A.2</div>
+<div class="ch-title">即期年金</div>
+<div class="ch-subtitle">Income Annuities — Types &amp; Pricing Considerations</div>
+<button class="done-btn" id="db-a2ch4" onclick="toggleDone('a2ch4')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>即期年金五種類型：Payment Certain、Specialty Markets、Life Contingent（3 種）、Joint &amp; Survivor、Variable Payment</li>
+  <li>Life with n years certain 公式：\(\bar{a}_{\overline{n}|} + {}_np_x \cdot v^n \cdot a_{x+n}\)</li>
+  <li>Unit refund：單位餘額計算與受益人給付</li>
+  <li>定價考量六項（利率、死亡率、費用、法規成本、盈餘壓力、現金流型態）</li>
+  <li>死亡率方向：與壽險<strong>相反</strong>——活得越長成本越高</li>
+  <li>死亡率改善假設：每年降低 1%</li>
+  <li>次標準體三種方法：Rated Age（最常用）、Constant Multiple、Constant Extra Deaths</li>
+</ol>
+</div>
+
+<h2>一、即期年金類型（Types of Income Annuities）</h2>
+
+<p>即期年金又稱 payout annuity、immediate annuity：以單一保費購買，開始定期給付。大多數由躉繳保費資助，給付通常立即開始（有時遞延）。</p>
+
+<ol>
+  <li><span class="kw">Payment Certain（確定給付，\(\bar{a}_{\overline{n}|}\)）</span>：無論生死，保證給付固定期間；提供個人、捐贈基金、融資協議的固定收入</li>
+  <li><span class="kw">Specialty Markets（特殊市場）</span>：
+    <ul>
+      <li>結構化和解（Structured settlements）</li>
+      <li>彩券中獎（Lottery winnings）</li>
+      <li>慈善年金（Gift annuities）</li>
+      <li>逆向抵押貸款（Reverse mortgages）</li>
+    </ul>
+  </li>
+  <li><span class="kw">Life Contingent（與生命相關）</span>：
+    <ul>
+      <li><span class="en">Life only（純終身，\(a_x\)）</span>：被保人生存期間給付，死亡即停止</li>
+      <li><span class="en">Life with n years certain（附確定期終身）</span>：保證給付 n 年，之後繼續至死亡
+        <div class="math-block">\[\bar{a}_{\overline{n}|} + {}_{n|}a_x = \bar{a}_{\overline{n}|} + {}_np_x \cdot v^n \cdot a_{x+n}\]</div>
+      </li>
+      <li><span class="en">Unit refund（單位退款）</span>：
+        <ul>
+          <li>初始單位餘額 = 現金值 / 發行時單位值；每期支付減少固定單位數</li>
+          <li>\(\text{Unit Balance}_t = \text{Unit Balance}_0 - t \times \text{Units Per Payment}\)</li>
+          <li>被保人死亡時，受益人收到剩餘單位餘額的價值</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="kw">Joint and Survivor（連生及最後生存者，\(a_{xy}\)）</span>：最後一位被保人死亡後停止；第一人死亡後給付金額可能改變</li>
+  <li><span class="kw">Variable Payment（變額給付）</span>：給付依投資績效每月調整（同 VA 年金化公式，見 Ch.2）；雖提供增加收入機會，但給付可能下降——對退休人士心理上難以接受</li>
+</ol>
+
+<h2>二、定價考量（Pricing Considerations）</h2>
+
+<div class="callout">⚠️ <strong>與壽險的關鍵差異：</strong>壽險死亡率越高 = 成本越高；即期年金恰好相反——被保人<strong>活得越久</strong>，公司給付越多。因此，即期年金定價時必須假設死亡率<strong>持續改善</strong>（mortality improvement），並採保守方向（假設長壽）。</div>
+
+<ol>
+  <li><span class="kw">利率（Interest Rates）</span>：以即期利率曲線（<span class="en">spot rate curve</span>）折現未來負債現金流</li>
+  <li><span class="kw">死亡率（Mortality）</span>：
+    <ul>
+      <li>反映年金受益人族群的已知和假設特性（性別等）</li>
+      <li>假設死亡率改善（mortality improvement），例如每年降低 1%：
+        <div class="math-block">\[q_{x+t}^{\text{proj}} = q_{x+t} \times (1 - 0.01)^t\]</div>
+      </li>
+      <li>次標準體方法（Substandard Mortality Methods）：
+        <ul>
+          <li><span class="kw">Rated Age（年齡評級，最常用）</span>：指定較高投保年齡（如 20 歲視為 50 歲）</li>
+          <li><span class="kw">Constant Multiple（固定倍數）</span>：死亡率乘以固定倍數</li>
+          <li><span class="kw">Constant Extra Deaths（固定額外死亡數）</span>：每千人加計固定死亡數</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><span class="kw">費用（Expenses）</span>：保費稅、維護費用、佣金</li>
+  <li><span class="kw">法規成本（Regulatory Costs）</span>：稅項、資本成本</li>
+  <li><span class="kw">盈餘壓力（Surplus Strain）</span>：對盈利的影響</li>
+  <li><span class="kw">現金流型態（Cash Flow Patterns）</span>：因產品類型不同差異很大</li>
+</ol>
+
+</div>
+</article>
+
+<article class="ch-block" id="a2ch5">
+<div class="ch-meta">Registered Index-Linked Annuities · Section A.2</div>
+<div class="ch-title">注冊指數連結年金（RILA）</div>
+<div class="ch-subtitle">Registered Index-Linked Annuities — Design, Hedging &amp; Risk Management</div>
+<button class="done-btn" id="db-a2ch5" onclick="toggleDone('a2ch5')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>RILA 計息公式：Floor 設計 vs. Buffer 設計的差異與公式</li>
+  <li>四種遞延年金比較表（FA / FIA / RILA / VA）</li>
+  <li>選擇權成本公式：Buffer = Call Spread − OTM Put；Floor = Call Spread + Put Spread</li>
+  <li>FIA 選擇權預算（Option Budget）公式</li>
+  <li>費率設定關係：Cap vs. 保障期間；Cap vs. Buffer 比例；Buffer vs. Floor</li>
+  <li>Interim Value 兩種計算方法：市值法 vs. Pro-rata 法</li>
+  <li>Lock 功能（Manual / Automatic）</li>
+  <li>風險管理：選擇權避險考量；以 VA GMxBs 避險</li>
+</ol>
+</div>
+
+<h2>一、RILA 概覽與市場背景</h2>
+<ul>
+  <li>2010 年首次推出；2018 年後市占率快速成長，2021 年達到所有遞延年金的約 16%</li>
+  <li>本質上是指數年金的不同設計：比 FIA 下跌保護少，但上限（Cap）更高</li>
+  <li>RILA 市占成長原因：比 FA 指數連結計息潛力更高；比 FIA 帳戶值成長潛力更高（但下跌風險也更大）；比 VA 有更多下跌保護</li>
+</ul>
+
+<h3>RILA 計息術語（Key Terms）</h3>
+<div class="tscroll"><table class="cmp-table">
+  <tr><th>術語</th><th>定義</th></tr>
+  <tr><td class="rl">Cap（上限）</td><td>計息期間可計入的最高利率</td></tr>
+  <tr><td class="rl">Buffer（緩衝）</td><td>指數下跌時，保險公司承擔的最大損失比例</td></tr>
+  <tr><td class="rl">Floor（底板）</td><td>合約持有人承擔的最大損失比例（通常為負數，如 −10%）</td></tr>
+  <tr><td class="rl">Crediting Term（計息期）</td><td>衡量指數績效的期間（通常 1–6 年）</td></tr>
+</table></div>
+
+<h2>二、四種遞延年金比較</h2>
+<div class="tscroll"><table class="cmp-table">
+  <tr><th></th><th>FA（固定）</th><th>FIA</th><th>RILA</th><th>VA（變額）</th></tr>
+  <tr><td class="rl">資產位置</td><td>一般帳戶（GA）</td><td>一般帳戶（GA）</td><td>GA + 分離帳戶（SA）</td><td>分離帳戶（SA）</td></tr>
+  <tr><td class="rl">計息方式</td><td>宣告利率</td><td>指數（含底板）</td><td>指數（含 buffer 或 floor）</td><td>市場報酬</td></tr>
+  <tr><td class="rl">可能虧損</td><td class="tag-n">否</td><td class="tag-n">否</td><td class="tag-y">是（超過 buffer/floor）</td><td class="tag-y">是</td></tr>
+  <tr><td class="rl">帳戶值每日變動</td><td class="tag-n">否</td><td class="tag-n">否</td><td class="tag-y">是</td><td class="tag-y">是</td></tr>
+  <tr><td class="rl">受 SNL 約束</td><td class="tag-y">是</td><td class="tag-y">是</td><td class="tag-y">是</td><td class="tag-n">否</td></tr>
+</table></div>
+
+<h2>三、兩種計息結構</h2>
+
+<div class="math-block">
+\[\textbf{Floor 設計（底板）：}\]
+\[Credit = \max\!\Big[\text{Floor},\; \min\!\big[\text{Cap},\; PR \times \text{IndexReturn}\big]\Big]\]
+\[\textbf{Buffer 設計（緩衝）：}\]
+\[Credit = \begin{cases} \min\!\big[\text{Cap},\; \min(0,\; PR \times \text{IndexReturn} + \text{Buffer})\big] & \text{if IndexReturn} < 0 \\ \min\!\big[\text{Cap},\; PR \times \text{IndexReturn}\big] & \text{otherwise} \end{cases}\]
+</div>
+
+<div class="callout">
+💡 <strong>Floor vs. Buffer 差異：</strong><br>
+<strong>Floor 設計</strong>：合約持有人承擔超過 Floor 以下的損失（Floor 通常設在 0% 以下，如 −10%）<br>
+<strong>Buffer 設計</strong>：保險公司承擔前 Buffer% 的損失；超過 Buffer 後合約持有人承擔所有損失（無下限）<br>
+→ Buffer 設計提供更高的 Cap（因為合約持有人承擔更多風險）
+</div>
+
+<h2>四、選擇權預算與成本</h2>
+
+<h3>FIA 選擇權預算</h3>
+<div class="math-block">
+\[\text{FIA Option Budget} = \text{Earned Rate} - \text{Credit Default Charge} - \text{Expenses} - \text{Profit Margin}\]
+</div>
+
+<h3>RILA 選擇權成本</h3>
+<div class="math-block">
+\[\text{RILA Option Budget} = \text{FIA Option Budget} + \text{Put Option}\]
+\[\text{Buffer: Option Cost} = (C_{\scriptsize ATM} - C_{\scriptsize OTM}) - P_{\scriptsize OTM,Buffer}\]
+\[\text{Floor: Option Cost} = (C_{\scriptsize ATM} - C_{\scriptsize OTM}) + (P_{\scriptsize OTM,Floor} - P_{\scriptsize ATM})\]
+</div>
+<div class="callout blue">
+  <strong>Buffer 設計：</strong>（Call Spread）− OTM Put<br>
+  &nbsp;&nbsp;→ 買入 ATM Call、賣出 OTM Call（Cap）、賣出 OTM Put（Buffer）<br><br>
+  <strong>Floor 設計：</strong>（Call Spread）+（Put Spread）<br>
+  &nbsp;&nbsp;→ 買入 ATM Call、賣出 OTM Call（Cap）、買入 OTM Put（Floor）、賣出 ATM Put
+</div>
+
+<div class="fblock">Buffer 設計：
+  買入 ATM Call（行使價 = 當前指數）
+  賣出 OTM Call（行使價 = Cap）
+  賣出 OTM Put（行使價 = Buffer）← 賣出 Put 產生收入，降低淨選擇權成本
+
+Floor 設計：
+  買入 ATM Call（行使價 = 當前指數）
+  賣出 OTM Call（行使價 = Cap）
+  買入 OTM Put（行使價 = Floor）← 買入 Put 支付保費，保護 Floor 以下
+  賣出 ATM Put（行使價 = 當前指數）← 賣出以降低成本</div>
+
+<h3>費率設定關係（Rate Sheet Relationships）</h3>
+<ul>
+  <li>計息期（Term）越長 → Cap 越高</li>
+  <li>Buffer 設計：Buffer 比例越高 → Cap 越低（公司承擔更多風險）</li>
+  <li>Buffer 設計的 Cap 高於 Floor 設計（同等條件下）</li>
+  <li>固定收益殖利率上升 → 選擇權預算增加 → Cap 可提高</li>
+  <li>Cap 因指數不同而異（如 S&amp;P 500 vs. Nasdaq）</li>
+</ul>
+
+<h2>五、中期價值與鎖定功能</h2>
+
+<h3>Interim Value（每日中期價值）</h3>
+<p>若合約持有人在計息期中途死亡、解約、年金化或提領，帳戶值基於中期價值計算。</p>
+<div class="tscroll"><table class="cmp-table">
+  <tr><th></th><th>市值法（Market Value Approach）</th><th>Pro-rata 法</th></tr>
+  <tr><td class="rl">計算依據</td><td>複製選擇權組合；輸入：指數報酬、利率、股市波動率、股息殖利率</td><td>簡單公式，基於指數報酬與時間比例</td></tr>
+  <tr><td class="rl">優點</td><td>資產負債表波動較小；監管機關較易接受</td><td>易向保戶/顧問解釋</td></tr>
+  <tr><td class="rl">缺點</td><td>複雜；難向保戶/顧問解釋</td><td>資產負債表波動較大；合約持有人行為風險較高</td></tr>
+</table></div>
+
+<h3>Lock 功能（鎖定功能）</h3>
+<ul>
+  <li><span class="kw">Manual Lock（手動鎖定）</span>：合約持有人可在任何非週年日鎖定中期價值；鎖定後帳戶值僅因提領而減少</li>
+  <li><span class="kw">Automatic Lock（自動鎖定）</span>：保戶設定目標值；一旦中期價值達到目標即永久鎖定，不可撤銷；目標值可在鎖定前修改</li>
+</ul>
+
+<h3>RILA 附約</h3>
+<ul>
+  <li><span class="kw">ROP DB（最常見）</span>：\(\text{DB} = \max[\text{Interim Value},\; \text{Premiums Paid} - \text{Withdrawals}]\)</li>
+  <li>GLWB 附約近年逐漸普及：傳統型（benefit base 模式）和非傳統型（% of AV 模式）</li>
+</ul>
+
+<h2>六、風險管理（Risk Management）</h2>
+
+<h3>以選擇權避險的主要考量</h3>
+<ol>
+  <li><span class="kw">交易規模</span>：名義金額 ≥ $1M 時交易成本最低；部分保險公司限制計息期起始日為每月 2–4 次以增加交易規模</li>
+  <li><span class="kw">交易對手風險（Counterparty Risk）</span>：OTC 選擇權帶來交易對手信用風險</li>
+  <li><span class="kw">流動性（Liquidity）</span>：賣出 Put 需提供擔保品（通常為現金或國庫券）；若指數大幅下跌可能面臨追加擔保品（collateral call）</li>
+  <li><span class="kw">遞減率（Decrements）</span>：避險部位應反映死亡率、失效率、提領率</li>
+</ol>
+
+<h3>以 VA GMxBs 避險</h3>
+<ul>
+  <li>大型 VA 投資組合的保險公司可將 RILA 和 VA GMxBs 避險合併</li>
+  <li>VA GMxBs（本質上是 put options）與 RILA（本質上是 call options）股市曝險方向相反，可互相對沖</li>
+  <li>可能比單獨購買選擇權更便宜，且交易對手風險更小</li>
+</ul>
+
+<h3>其他風險</h3>
+<ul>
+  <li><span class="kw">費率設定風險</span>：在合約購買前宣告費率 → 選擇權成本上升時利潤下降；可透過更頻繁調整費率緩解</li>
+  <li><span class="kw">投資風險</span>：固定收益資產的市場和信用違約風險</li>
+  <li><span class="kw">流動性風險</span>：失效超預期 → 需賣資產支應；指數大跌 → 需賣資產補繳擔保品</li>
+  <li><span class="kw">營運風險</span>：RILA 設計複雜，需要避險、投資、ALM、合約設計的高度專業</li>
+</ul>
+
+<h3>準備金與法規</h3>
+<ul>
+  <li>美國法定準備金：遵循 <span class="kw">VM-21</span>；RBC 要求遵循 VA 標準</li>
+  <li>NAIC 正在制定 RILA 最低非沒收值標準（確認 RILA 有 SNL，不同於 VA）</li>
+  <li>GAAP：基本 RILA 合約依 ASC 815，附約依 ASC 944（MRBs）</li>
+</ul>
+
+</div>
+</article>
+
+<article class="ch-block" id="a2ch6">
+<div class="ch-meta">Structured Settlement Annuities · Section A.2</div>
+<div class="ch-title">結構化和解年金</div>
+<div class="ch-subtitle">Structured Settlement Annuities — Overview, Pricing &amp; Reserving</div>
+<button class="done-btn" id="db-a2ch6" onclick="toggleDone('a2ch6')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>結構化和解定義、稅務地位、關鍵參與方</li>
+  <li>創建步驟：授權轉讓（Qualified Assignment）的角色</li>
+  <li>四種給付形式 + Benefit Escalator</li>
+  <li>定價假設：死亡率（次標準體核保挑戰）、利率（長尾責任）、費用</li>
+  <li>Benefit Escalator 對死亡率、利率、再投資風險的放大效果</li>
+  <li>準備金：VM-22、AG IX-A（固定額外死亡法）、AG IX-B</li>
+  <li>加拿大市場 vs. 美國市場差異；Factoring（僅美國）</li>
+</ol>
+</div>
+
+<h2>一、結構化和解概覽</h2>
+
+<h3>基本定義</h3>
+<ul>
+  <li>源自<span class="en">tort settlement（侵權訴訟和解）</span>後支付定期給付給原告</li>
+  <li>適用案件：
+    <ul>
+      <li>人身傷害（personal injury）、不當死亡（wrongful death）</li>
+      <li>醫療疏失（medical malpractice）、勞工補償（workers' compensation）</li>
+    </ul></li>
+  <li>給付依案件情況客製化（如立即支付醫療費用，或遞延至被害人子女大學教育）</li>
+  <li>由被告或其責任保險公司購買，以躉繳保費支付</li>
+  <li>美國與加拿大均<span class="tag-y">免稅</span>（相較一次性賠付具稅務優勢）</li>
+  <li>政府高度支持：減少對政府福利依賴、原告不易揮霍、無需自行投資管理</li>
+</ul>
+
+<h3>關鍵參與方與創建步驟</h3>
+<ol>
+  <li>被告與責任保險公司同意支付和解金</li>
+  <li>被告向壽險公司購買年金合約（由專業業務人員銷售；顧問從中協調並賺取佣金）</li>
+  <li>幾乎所有美國結構化和解透過<span class="kw">授權轉讓（Qualified Assignment）</span>進行：被告支付受讓人（通常是壽險公司子公司）以承接責任，從而解除被告直接責任</li>
+  <li>壽險公司開始向原告支付定期給付</li>
+</ol>
+
+<h3>四種給付形式</h3>
+<ol>
+  <li><span class="kw">確定年金（Annuity Certain）</span>：固定期間定期給付，不論生死</li>
+  <li><span class="kw">生存年金（Single Life Annuity）</span>：生存期間定期給付；附確定期終身最常見</li>
+  <li><span class="kw">暫時生存年金（Temporary Life Annuity）</span>：在特定日期或死亡時終止</li>
+  <li><span class="kw">一次性給付（Lump Sum）</span>：在特定未來日期一次給付；可為確定或與生命相關；和解通常包含多次一次性給付（如每 5 年一次）</li>
+</ol>
+<div class="callout">💡 <strong>給付遞增條款（Benefit Escalator）</strong>：給付以固定比例（如每年 2%）遞增以對抗通貨膨脹。此條款<strong>放大</strong>死亡率、利率和再投資風險——因為越晚支付的金額越大，對長壽和利率的敏感度更高。</div>
+
+<h2>二、定價與風險考量</h2>
+
+<h3>死亡率假設</h3>
+<ul>
+  <li>核保挑戰：和解族群 ≠ 一般被保人族群</li>
+  <li>族群特性：較年輕（退休前）；無逆向選擇；資料可信度很低；常有重大外傷（如脊椎損傷）；與「一般次標準體」（肥胖、糖尿病）截然不同</li>
+  <li>年齡評級（Age Rate-up）很常見：例如 20 歲可能按 50 歲計算</li>
+  <li>死亡率改善：通常採一維表（1D scale），僅依性別區分</li>
+</ul>
+
+<h3>利率假設</h3>
+<ul>
+  <li>結構化和解屬<span class="kw">長尾責任（long-tail liability）</span>（可超過 30 年）；最長可用債券通常為 30 年</li>
+  <li>給付固定性允許投資較短、流動性較低的資產（私募債券、抵押貸款證券等）</li>
+  <li>\(\text{Pricing Rate} = \text{Gross Yield} - \text{Default Margin} - \text{Inv Expense} - \text{Profit}\)</li>
+  <li>再投資風險顯著：負債存續期 &gt; 資產存續期；Benefit Escalator 進一步加劇</li>
+</ul>
+
+<h3>費用假設</h3>
+<ul>
+  <li>保費比例型：佣金與取得費用</li>
+  <li>固定費用型：取得成本不隨保費變動（大保單有利，小保單不利）</li>
+  <li>給付比例型：維護費用與管理費</li>
+</ul>
+
+<h3>其他定價考量</h3>
+<ul>
+  <li><span class="kw">費率表保證風險</span>：保險公司通常保證費率一段時間；應持有額外利率邊際以對沖利率下跌風險</li>
+  <li><span class="kw">盈餘壓力</span>：來自法定資本要求與保守準備金</li>
+</ul>
+
+<h2>三、準備金與評價</h2>
+<ul>
+  <li><span class="kw">VM-22（法定準備金）</span>：準備金 = 以法定死亡率和利率折現的給付現值；未來可能採 PBR 方法（CTE 70）；須接受資產充足性測試（asset adequacy testing）</li>
+  <li><span class="kw">AG IX-A（固定額外死亡法）</span>：每千人加計額外死亡數直至預期壽命符合核保結果；產生早期死亡率偏高、後期偏低的準備金</li>
+  <li><span class="kw">AG IX-B</span>：為利率隨期間變動提供指引；若給付金額超過上年度 110% 則給予新利率</li>
+  <li>GAAP 準備金：採一般給付型年金方式，使用年齡評級後的死亡率</li>
+</ul>
+
+<h2>四、其他考量與加拿大市場</h2>
+<ul>
+  <li>律師費用也可以年金形式支付（非免稅，定價類似一般退休年金）</li>
+  <li><span class="kw">Factoring（僅美國）</span>：年金受益人將部分或全部給付出售給第三方；存在爭議（折現率可能過高）</li>
+  <li>對抗通脹的產品變化：Benefit Escalator（最流行）；CPI 指數化；市場連結（如 S&amp;P 500 + 保證底板）</li>
+</ul>
+<div class="tscroll"><table class="cmp-table">
+  <tr><th></th><th>美國</th><th>加拿大</th></tr>
+  <tr><td class="rl">稅務機關</td><td>IRS</td><td>CRA（加拿大稅務局）</td></tr>
+  <tr><td class="rl">授權轉讓比例</td><td>約 100%</td><td>約 50%</td></tr>
+  <tr><td class="rl">市場規模</td><td>較大</td><td>較小（2–3 家保險公司主導）</td></tr>
+  <tr><td class="rl">Factoring</td><td class="tag-y">有（給付可轉讓）</td><td class="tag-n">無（給付不可轉讓）</td></tr>
+</table></div>
+
+</div>
+</article>
+
+<article class="ch-block" id="a2ch7">
+<div class="ch-meta">Pension Risk Transfer · Section A.2</div>
+<div class="ch-title">退休金風險移轉</div>
+<div class="ch-subtitle">Pension Risk Transfer — Group Annuities: Buy-out, Buy-in, Pricing &amp; Risk</div>
+<button class="done-btn" id="db-a2ch7" onclick="toggleDone('a2ch7')">✓ 標記為已讀</button>
+<hr class="rule">
+<div class="notes">
+
+<div class="exam-box">
+<div class="etitle">📌 DSM 考試重點（Key Exam Topics）</div>
+<ol>
+  <li>Buy-out vs. Buy-in：定義與各自優勢（表格）</li>
+  <li>市場概況：美加市場規模；Lift-out 定義</li>
+  <li>採購流程：四個步驟；Premium Roll-Forward 機制</li>
+  <li>保單/合約差異：Buy-out vs. Buy-in 的合約結構</li>
+  <li>定價七大假設（全部需掌握）</li>
+  <li>定價八項考量（尤其資產組合、長壽假設）</li>
+  <li>五類風險的緩解方法（投資、利率、長壽、受益人行為、營運）</li>
+</ol>
+</div>
+
+<h2>一、團體年金概覽（Group Annuity Overview）</h2>
+
+<h3>背景</h3>
+<ul>
+  <li>確定給付退休金計畫（DB pension plans）承諾在退休時支付終身退休金</li>
+  <li><span class="kw">計畫贊助人（Plan Sponsor）</span>：承諾支付退休金的雇主；歷史上未以資產負債匹配方式投資 → 市場波動需要追加現金注入</li>
+  <li>購買團體年金是避免意外的方式</li>
+</ul>
+
+<h3>兩種團體年金（2 Types）</h3>
+<div class="tscroll"><table class="cmp-table">
+  <tr><th>類型</th><th>運作方式</th><th>比喻</th></tr>
+  <tr><td class="rl">Buy-out（買斷年金）</td><td>壽險公司直接向計畫成員支付退休金；成員收到給付資格證明書；保險公司完全承擔風險</td><td>外包（outsourcing）給保險公司</td></tr>
+  <tr><td class="rl">Buy-in（買入年金）</td><td>壽險公司每月向退休金基金支付整額款項，再由基金支付給成員；贊助人保留部分風險</td><td>保留在自己手上（in-house），可日後轉為 buy-out</td></tr>
+</table></div>
+
+<h3>各自優勢比較</h3>
+<div class="tscroll"><table class="cmp-table">
+  <tr><th>優勢</th><th>Buy-Out</th><th>Buy-In</th></tr>
+  <tr><td>降低贊助人未來現金貢獻風險</td><td class="tag-y">✓</td><td class="tag-y">✓</td></tr>
+  <tr><td>退休金由受嚴格監管的壽險公司支付</td><td class="tag-y">✓</td><td class="tag-y">✓</td></tr>
+  <tr><td>避免不利的前期現金和會計影響</td><td></td><td class="tag-y">✓</td></tr>
+  <tr><td>消除贊助人支付退休金的營運風險</td><td class="tag-y">✓</td><td></td></tr>
+  <tr><td>消除 PBGC 保費（美國）</td><td class="tag-y">✓</td><td></td></tr>
+  <tr><td>可轉換為另一種類型</td><td></td><td class="tag-y">✓</td></tr>
+</table></div>
+
+<h2>二、市場概況</h2>
+<ul>
+  <li>美加市場從 2016 至 2021 年近乎翻三倍</li>
+  <li>美國：$381 億，19 家有效壽險公司</li>
+  <li>加拿大：$77 億，8 家有效壽險公司</li>
+  <li><span class="kw">Lift-out</span>：美國對降低退休金風險的團體年金交易的專有名稱（比清盤更常見）</li>
+  <li>保險公司可能專注於：Buy-out vs. Buy-in；大型 vs. 小型交易；已退休 vs. 遞延年金受益人；CPI 連結 vs. 名義給付；特定長壽風險輪廓</li>
+</ul>
+
+<h2>三、採購流程（Purchase Process）</h2>
+<ol>
+  <li>贊助人聘請精算顧問進行競爭性投標（competitive bidding）</li>
+  <li>顧問向保險公司發送資訊並要求報價，內容包含：
+    <ul>
+      <li>計畫成員資料、年金類型</li>
+      <li>分批結構（tranching structure）、相關日期</li>
+    </ul></li>
+  <li>保險公司提交報價</li>
+  <li>贊助人依以下因素選擇得標保險公司：
+    <ul>
+      <li>價格</li>
+      <li>對計畫成員的信託責任（美國依 Dept. of Labor IB 95-1 指引）</li>
+      <li>保險公司特性：信評、市場經驗、既有關係</li>
+    </ul></li>
+</ol>
+<div class="callout">💡 通知得標後數週才完成交易，期間保險公司面臨市場波動風險。可透過<span class="kw">保費滾動機制（Premium Roll-Forward）</span>對沖（調整最終價格），或由贊助人轉移類似資產以降低風險。</div>
+
+<h2>四、保單/合約（Policy / Contract）</h2>
+<ul>
+  <li>與個人年金的差異：團體年金合約在保險公司與計畫贊助人之間；僅 Buy-out：受益人收到給付資格證明書</li>
+  <li>團體年金給付反映退休金計畫所提供的給付（可能與 CPI 連結或與政府給付整合）</li>
+  <li>Buy-in 可能支付固定給付，通膨增加由贊助人自行吸收</li>
+  <li>合約應明確說明遞延年金受益人的各項選擇（換算選項、退休選項等）</li>
+</ul>
+
+<h2>五、定價假設（7 項）</h2>
+<ol>
+  <li>預期資產報酬率（Expected asset return）</li>
+  <li>預期資產違約率（Expected asset defaults）</li>
+  <li>長壽基準表和長壽改善比例（Longevity base table and improvement scale）</li>
+  <li>取得與維護費用（Acquisition and maintenance expenses）</li>
+  <li>受益人行為（Annuitant behavior）</li>
+  <li>不利偏差準備（PAD, Provisions for Adverse Deviation）</li>
+  <li>盈利水準目標（Profitability level）</li>
+</ol>
+
+<h2>六、定價考量（8 項）</h2>
+<ol>
+  <li><span class="kw">資產組合（Asset Mix）</span>：對定價影響最大且每日變化；團體年金現金流以非流動資產為主，可投資流動性較低的資產（私募債券、抵押貸款等）；換算選項增加流動性需求</li>
+  <li><span class="kw">長壽（Longevity）</span>：各保險公司假設差異很大；定價依賴多元資料（郵遞區號、職業類型、歷史數據）；資料越一致 → 可越積極定價；死亡率改善通常基於業界表格</li>
+  <li><span class="kw">流動性（Liquidity）</span>：若遞延受益人可換算，需假設換算比例</li>
+  <li><span class="kw">市場風險邊際（Market Risk Margin）</span>：對抗報價後不利市場波動；可透過 Premium Roll-Forward 或實物資產移轉降低</li>
+  <li><span class="kw">資料風險邊際（Data Risk Margin）</span>：基於保險公司事後調整/重新定價的能力</li>
+  <li><span class="kw">受益人行為（Annuitant Behavior）</span>：遞延受益人有選擇時，需假設退休日期和退休形式</li>
+  <li><span class="kw">顧問佣金（Commissions）</span>：通常由贊助人或退休金基金支付；有時納入團體年金定價</li>
+  <li><span class="kw">再保或離岸結構（Reinsurance or Offshore Structures）</span>：保險公司使用的任何安排應反映在定價中</li>
+</ol>
+
+<h2>七、風險緩解方法（Risk Mitigation）</h2>
+<ul>
+  <li><span class="kw">投資風險</span>：謹慎信用核保；投資較高信用品質固定收益資產；限制非固定收益資產投資</li>
+  <li><span class="kw">利率風險</span>：在多個關鍵利率點緊密匹配資產負債存續期（duration matching）</li>
+  <li><span class="kw">長壽風險（最具挑戰性）</span>：限制遞延年金受益人數量；資料不一致時使用保守假設；承保壽險形成自然對沖（natural hedge）；再保長壽風險</li>
+  <li><span class="kw">受益人行為風險</span>：對退休日期和退休形式使用保守假設</li>
+  <li><span class="kw">營運風險</span>（支付錯誤、向已故受益人支付）：定期驗證受益人存活狀況</li>
+</ul>
+
+</div>
+</article>
+
+</main>
+
+<script>
+const IDS = ['ch1','ch2','ch3','ch4','ch5','ch6','ch7','a2ch1','a2ch2','a2ch3','a2ch4','a2ch5','a2ch6','a2ch7'];
+
+function toggleSB(){document.body.classList.toggle('sb-open')}
+
+function goTo(id, el){
+  document.querySelectorAll('.ch-block').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.ch-link').forEach(a=>a.classList.remove('active'));
+  el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(window.innerWidth<768)document.body.classList.remove('sb-open');
+  if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([document.getElementById(id)]);
+}
+
+function toggleDone(id){
+  const k=(id.startsWith('a2')?'ila_a2_done_':'ila_a1_done_')+id;
+  localStorage.getItem(k)==='1'?localStorage.removeItem(k):localStorage.setItem(k,'1');
+  applyDone();
+}
+
+function applyDone(){
+  let done=0;
+  IDS.forEach(id=>{
+    const d=localStorage.getItem('ila_a1_done_'+id)==='1';
+    const ck=document.getElementById('ck-'+id);
+    const lnk=ck?ck.closest('.ch-link'):null;
+    const btn=document.getElementById('db-'+id);
+    if(ck)ck.textContent=d?'✓':'';
+    if(lnk)lnk.classList.toggle('done',d);
+    if(btn){btn.textContent=d?'✓ 已完成閱讀':'✓ 標記為已讀';btn.classList.toggle('done',d);}
+    if(d)done++;
+  });
+  document.getElementById('progress-label').textContent='學習進度 '+done+' / 14';
+  document.getElementById('progress-fill').style.width=(done/IDS.length*100)+'%';
+}
+
+// init
+document.getElementById('ch1').classList.add('active');
+document.querySelector('.ch-link').classList.add('active');
+document.body.classList.add('sb-open');
+applyDone();
+</script>
+</body>
+</html>
